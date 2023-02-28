@@ -1,0 +1,37 @@
+name: "RunnerTools build & test"
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: "Build RunnerTools.Core"
+    - uses: actions/checkout@v3
+    
+    - name: "Setup dotnet"
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+        
+    - name: "Install dependencies"
+      run: dotnet restore
+    
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    
+    steps:      
+    - name: "Build RunnerTools.Core"
+    - run: dotnet build RunnerTools.Core
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: "Test RunnerTools.Core with dotnet CLI"
+    - run: dotnet test
