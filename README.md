@@ -27,6 +27,11 @@ Para utilizadores autenticados, deverá permitir:
 - Permitir comparar treino planeado com executado
   - Permitir gravar comparativo, com adição de outras informações (observações, etc)
 
+## Funcionalidades adicionais
+
+- Exportar plano de treino (descarregar ficheiro)
+- Exportar treino para outras plataformas (lista abaixo)
+ 
 ## Plataformas de interesse
 
 - [Garmin](https://developer.garmin.com/fit/overview/)
@@ -56,7 +61,7 @@ Será preciso definir/escolher o modelo de utilização e perfis entre os 4 poss
 
 2. Com recursos básicos sem autenticação e com recursos Premium diferenciados (recursos avançados != recursos premium)
 
-   | Modelo                    | Recursos básicos | Recursos avançados | Recursos Premium |
+   |                           | Recursos básicos | Recursos avançados | Recursos Premium |
    | ------------------------- | :--------------: | :----------------: | :--------------: |
    | **Visitante**             |     &#10004;     |      &#10006;      |     &#10006;     |
    | **Autenticado**           |     &#10004;     |      &#10004;      |     &#10006;     |
@@ -71,10 +76,8 @@ Será preciso definir/escolher o modelo de utilização e perfis entre os 4 poss
 
 4. Com todos os recursos apenas para utilizadores autenticados e com recursos Premium diferenciados (recursos avançados != recursos premium)
 
-   | Modelo                    | Recursos básicos | Recursos avançados | Recursos Premium |
+   |                           | Recursos básicos | Recursos avançados | Recursos Premium |
    | ------------------------- | :--------------: | :----------------: | :--------------: |
    | **Visitante**             |     &#10006;     |      &#10006;      |     &#10006;     |
    | **Autenticado**           |     &#10004;     |      &#10004;      |     &#10006;     |
    | **Assinante autenticado** |     &#10004;     |      &#10004;      |     &#10004;     |
-
-
