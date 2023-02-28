@@ -36,3 +36,45 @@ Para utilizadores autenticados, deverá permitir:
 - [Runkeeper](https://runkeeper.com/developer/healthgraph) (restrito à parceiros - [StackOverflow](https://stackoverflow.com/questions/62769836/runkeeper-health-graph-api-documentation))
 - Nike Run
 - [MapMyRun](https://developer.underarmour.com/docs/)
+
+## Perfis de utilizador
+
+De partida haverá apenas 1 perfil de utilizador, para que seja possível autenticar na aplicação.
+
+No entanto, podemos adicionar recursos Premium e autorizar consoante perfil/perfis de utilizador Premium.
+
+## Modelos de utilização
+
+Será preciso definir/escolher o modelo de utilização e perfis entre os 4 possíveis modelos identificados abaixo.
+
+1. Com recursos básicos sem autenticação e sem recursos Premium (recursos avançados = recursos premium)
+
+   |                 | Recursos básicos | Recursos avançados |
+   | --------------- | :--------------: | :----------------: |
+   | **Visitante**   |     &#10004;     |      &#10006;      |
+   | **Autenticado** |     &#10004;     |      &#10004;      |
+
+2. Com recursos básicos sem autenticação e com recursos Premium diferenciados (recursos avançados != recursos premium)
+
+   | Modelo                    | Recursos básicos | Recursos avançados | Recursos Premium |
+   | ------------------------- | :--------------: | :----------------: | :--------------: |
+   | **Visitante**             |     &#10004;     |      &#10006;      |     &#10006;     |
+   | **Autenticado**           |     &#10004;     |      &#10004;      |     &#10006;     |
+   | **Assinante autenticado** |     &#10004;     |      &#10004;      |     &#10004;     |
+
+3. Com todos os recursos apenas para utilizadores autenticados e sem recursos Premium (recursos avançados = recursos premium)
+
+   |                 | Recursos básicos | Recursos avançados |
+   | --------------- | :--------------: | :----------------: |
+   | **Visitante**   |     &#10006;     |      &#10006;      |
+   | **Autenticado** |     &#10004;     |      &#10004;      |
+
+4. Com todos os recursos apenas para utilizadores autenticados e com recursos Premium diferenciados (recursos avançados != recursos premium)
+
+   | Modelo                    | Recursos básicos | Recursos avançados | Recursos Premium |
+   | ------------------------- | :--------------: | :----------------: | :--------------: |
+   | **Visitante**             |     &#10006;     |      &#10006;      |     &#10006;     |
+   | **Autenticado**           |     &#10004;     |      &#10004;      |     &#10006;     |
+   | **Assinante autenticado** |     &#10004;     |      &#10004;      |     &#10004;     |
+
+
