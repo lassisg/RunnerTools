@@ -29,9 +29,10 @@ Para utilizadores autenticados, deverá permitir:
 
 ## Plataformas de interesse
 
-- Garmin
+- [Garmin](https://developer.garmin.com/fit/overview/)
+- [Suunto](https://apizone.suunto.com/docs/services/)
+- [Polar](https://www.polar.com/accesslink-api/#polar-accesslink-api)
+- [Google Fit](https://developers.google.com/fit/rest?hl=pt-br)
+- [Runkeeper](https://runkeeper.com/developer/healthgraph) (restrito à parceiros - [StackOverflow](https://stackoverflow.com/questions/62769836/runkeeper-health-graph-api-documentation))
 - Nike Run
-- Suunto
-- Polar
-- Runkeeper
-- Google Fit
+- [MapMyRun](https://developer.underarmour.com/docs/)
