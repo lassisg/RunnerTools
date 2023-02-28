@@ -21,11 +21,11 @@ Possivelmente para uso sem autenticação, deverá fornecer os seguintes cálcul
 Para utilizadores autenticados, deverá permitir:
 
 - Vincular conta com outras plataformas (lista abaixo)
-- Obter informações de treinos de outras plataformas (atenção para trinos repetidos em plataformas diferentes)
+- Obter informações de treinos de outras plataformas (atenção para treinos repetidos em plataformas diferentes)
 - Calcular ritmos para tipos de treino diferentes (Ritmo, Regenerativo, Progressivo, Fartlek e, possivelmente, Tiros)
 - Enviar para outras plataformas o treino criado
 - Permitir comparar treino planeado com executado
-  - Permitir gravar comparativo, com adicção de outras informações (observações, etc)
+  - Permitir gravar comparativo, com adição de outras informações (observações, etc)
 
 ## Plataformas de interesse
 
