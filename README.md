@@ -12,17 +12,26 @@ Deverá utilizar autenticação para que permita armazenamento de dados por util
 
 Possivelmente para uso sem autenticação, deverá fornecer os seguintes cálculos:
 
-- Conversão de velocidade (km/h) para ritmo (min/km)
-- Ritmo médio, dada uma distância
-- Velocidade média, dada uma distância
+1. Conversão de velocidade (km/h) para ritmo (min/km) e vice-versa
+   - Exemplo: 10,00 km/h -> 10,00/60 min -> 6,00 min/km
+   - Exemplo: 6,00 min/km -> 60,00/10 km -> 10,00 km/h
+   
+2. Cálculo de ritmo (dada distância e tempo desejados)
+   - Exemplo: 10 km em 50 minutos -> 5 min/km
+   
+3. Cálculo de velocidade (dada uma distância e tempo desejados)
+   - Exemplo: 10 km em 50 minutos -> 12 min/km
+   
+4. Cálculo de tempo (dados ritmo e distância desejados)
+   - Exemplo: 21,097 km (meia maratona) com ritmo de 5:30 min/km -> 1:56:02
 
 ## Cálculos de treinos
 
 Para utilizadores autenticados, deverá permitir:
 
+- Calcular ritmos para tipos de treino diferentes (Ritmo, Regenerativo, Progressivo, Fartlek e, possivelmente, Tiros)
 - Vincular conta com outras plataformas (lista abaixo)
 - Obter informações de treinos de outras plataformas (atenção para treinos repetidos em plataformas diferentes)
-- Calcular ritmos para tipos de treino diferentes (Ritmo, Regenerativo, Progressivo, Fartlek e, possivelmente, Tiros)
 - Enviar para outras plataformas o treino criado
 - Permitir comparar treino planeado com executado
   - Permitir gravar comparativo, com adição de outras informações (observações, etc)
