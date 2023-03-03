@@ -27,18 +27,59 @@ Possivelmente para uso sem autenticação, deverá fornecer os seguintes cálcul
 
 ## Cálculos de treinos
 
+A aplicação considerará que cada treino é proposto com algumas informações de referência:
+
+- Tipo de treino (Regenerativo, Ritmo, Progressivo e Fartlek)
+- Distância
+- Tipo de terreno (indiferente para os cálculos)
+- Duração mínima
+- Duração máxima
+
+Com esses dados a aplicação deverá calcular ritmo para 3 cenários:
+
+1. Treino forte (duração mínima)
+2. Treino médio (duração média)
+3. Treino leve (duração máxima)
+
+Os cálculos deverão definir o ritmo para cada intervalo de distância (1 km).
+
 Para utilizadores autenticados, deverá permitir:
 
-- Calcular ritmos para tipos de treino diferentes (Ritmo, Regenerativo, Progressivo, Fartlek e, possivelmente, Tiros)
-- Vincular conta com outras plataformas (lista abaixo)
-- Obter informações de treinos de outras plataformas (atenção para treinos repetidos em plataformas diferentes)
-- Enviar para outras plataformas o treino criado
-- Permitir comparar treino planeado com executado
-  - Permitir gravar comparativo, com adição de outras informações (observações, etc)
+1. Calcular ritmos para tipos de treino diferentes
+
+   i. **Treino Regenerativo**: Treino leve, sem necessidade de variações de ritmo por km
+      - *Exemplo*: 6 km entre 35 min e 42 min
+         - Forte: ritmo de 5:50 min/km (duração total de 35:00 min)
+         - Médio: ritmo de 6:25 min/km (duração total de 38:30 min)
+         - Leve: ritmo de 7:00 min/km (duração total de 42:00 min)
+        
+   ii. **Treino de Ritmo**: Treino forte, mas sem necessidade de variações de ritmo por km
+      - *Exemplo*: 7 km entre 35 min e 42 min
+         - Forte: ritmo de 5:00 min/km (duração total de 35:00 min)
+         - Médio: ritmo de 5:30 min/km (duração total de 38:30 min)
+         - Leve: ritmo de 6:00 min/km (duração total de 42:00 min)
+        
+   iii. **Treino Progressivo**: Treino em que o ritmo deve ser menor (mais rápido) a cada intervalo (km)
+      - *Exemplo*: 5 km entre 30 min e 34 min (o utilizador precisará definir um dos ritmos para que seja calculado o outro)
+         - Forte: ritmos de 6:10 min/km (leve) e 5:45 min/km (forte) (duração total de 30:00 min)
+         - Médio: ritmos de 6:45 min/km (leve) e 5:52 min/km (forte) (duração total de 31:59 min)
+         - Leve: ritmos de 7:00 min/km (leve) e 6:30 min/km (forte) (duração total de 34:00 min)
+        
+   iv. **Treino Fartlek**: Treino em que deve haver 2 ritmos diferentes e alternados por intervalo (km). Deve sempre iniciar com o ritmo mais leve/lento
+      - *Exemplo*: 6 km entre 34 min e 40 min (o utilizador precisará definir um dos ritmos e a variação de ritmo ou os 2 ritmos para que sejam calculados os ritmos de cada intervalo)
+         - Forte: ritmos de 6:20 min/km (leve) à 5:00 min/km (forte), com redução de 16 seg/km no ritmo (duração total de 34:00 min)
+         - Médio: ritmos de 6:40 min/km (leve) e 5:40 min/km (forte), com redução de 12 seg/km no ritmo (duração total de 37:00 min)
+         - Leve: ritmos de 7:00 min/km (leve) à 6:20 min/km (forte), com redução de 8 seg/km no ritmo (duração total de 40:00 min)
+   
+2. Vincular conta com outras plataformas (lista abaixo)
+3. Obter informações de treinos de outras plataformas (atenção para treinos repetidos em plataformas diferentes)
+4. Permitir comparar treino planeado com executado
+   - Permitir gravar comparativo, com adição de outras informações (observações, etc)
+5. Enviar para outras plataformas o treino criado
 
 ## Funcionalidades adicionais
 
-- Exportar plano de treino (descarregar ficheiro)
+- Exportar plano de treino (descarregar ficheiro FIT/TCX/GPX)
 - Exportar treino para outras plataformas (lista abaixo)
  
 ## Plataformas de interesse
