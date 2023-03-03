@@ -75,12 +75,12 @@ Para utilizadores autenticados, deverá permitir:
 3. Obter informações de treinos de outras plataformas (atenção para treinos repetidos em plataformas diferentes)
 4. Permitir comparar treino planeado com executado
    - Permitir gravar comparativo, com adição de outras informações (observações, etc)
-5. Enviar para outras plataformas o treino criado
 
-## Funcionalidades adicionais
 
-- Exportar plano de treino (descarregar ficheiro FIT/TCX/GPX)
-- Exportar treino para outras plataformas (lista abaixo)
+## Recursos Premium
+
+1. Exportar treino para outras plataformas (lista abaixo)
+2. Exportar plano de treino (descarregar ficheiro FIT/TCX/GPX)
  
 ## Plataformas de interesse
 
@@ -98,36 +98,17 @@ De partida haverá apenas 1 perfil de utilizador, para que seja possível autent
 
 No entanto, podemos adicionar recursos Premium e autorizar consoante perfil/perfis de utilizador Premium.
 
-## Modelos de utilização
+## Modelo de utilização
 
-Será preciso definir/escolher o modelo de utilização e perfis entre os 4 possíveis modelos identificados abaixo.
+Visitantes poderão utilizar apenas os cálculos básicos.
 
-1. Com recursos básicos sem autenticação e sem recursos Premium (recursos avançados = recursos premium)
+Para utilizar cálculos de treinos, será preciso criar uma conta de utilizador e autenticar-se na aplicação.
 
-   |                 | Recursos básicos | Recursos avançados |
-   | --------------- | :--------------: | :----------------: |
-   | **Visitante**   |     &#10004;     |      &#10006;      |
-   | **Autenticado** |     &#10004;     |      &#10004;      |
+Recursos avançados só serão acessíveis para utilizadores com perfil 'premium'.
 
-2. Com recursos básicos sem autenticação e com recursos Premium diferenciados (recursos avançados != recursos premium)
+|                           | Recursos básicos | Recursos avançados | Recursos Premium |
+| ------------------------- | :--------------: | :----------------: | :--------------: |
+| **Visitante**             |     &#10004;     |      &#10006;      |     &#10006;     |
+| **Autenticado**           |     &#10004;     |      &#10004;      |     &#10006;     |
+| **Assinante autenticado** |     &#10004;     |      &#10004;      |     &#10004;     |
 
-   |                           | Recursos básicos | Recursos avançados | Recursos Premium |
-   | ------------------------- | :--------------: | :----------------: | :--------------: |
-   | **Visitante**             |     &#10004;     |      &#10006;      |     &#10006;     |
-   | **Autenticado**           |     &#10004;     |      &#10004;      |     &#10006;     |
-   | **Assinante autenticado** |     &#10004;     |      &#10004;      |     &#10004;     |
-
-3. Com todos os recursos apenas para utilizadores autenticados e sem recursos Premium (recursos avançados = recursos premium)
-
-   |                 | Recursos básicos | Recursos avançados |
-   | --------------- | :--------------: | :----------------: |
-   | **Visitante**   |     &#10006;     |      &#10006;      |
-   | **Autenticado** |     &#10004;     |      &#10004;      |
-
-4. Com todos os recursos apenas para utilizadores autenticados e com recursos Premium diferenciados (recursos avançados != recursos premium)
-
-   |                           | Recursos básicos | Recursos avançados | Recursos Premium |
-   | ------------------------- | :--------------: | :----------------: | :--------------: |
-   | **Visitante**             |     &#10006;     |      &#10006;      |     &#10006;     |
-   | **Autenticado**           |     &#10004;     |      &#10004;      |     &#10006;     |
-   | **Assinante autenticado** |     &#10004;     |      &#10004;      |     &#10004;     |
