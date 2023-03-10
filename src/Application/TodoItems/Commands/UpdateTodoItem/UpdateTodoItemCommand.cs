@@ -23,21 +23,19 @@ public class UpdateTodoItemCommandHandler : IRequestHandler<UpdateTodoItemComman
         _context = context;
     }
 
-    public async Task<Unit> Handle(UpdateTodoItemCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateTodoItemCommand request, CancellationToken cancellationToken)
     {
         var entity = await _context.TodoItems
             .FindAsync(new object[] { request.Id }, cancellationToken);
-
+    
         if (entity == null)
         {
             throw new NotFoundException(nameof(TodoItem), request.Id);
         }
-
+    
         entity.Title = request.Title;
         entity.Done = request.Done;
-
+    
         await _context.SaveChangesAsync(cancellationToken);
-
-        return Unit.Value;
     }
 }
