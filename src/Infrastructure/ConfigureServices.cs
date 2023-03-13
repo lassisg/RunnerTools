@@ -1,10 +1,12 @@
-﻿using RunnerTools.Application.Common.Interfaces;
+﻿using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using RunnerTools.Application.Common.Interfaces;
 using RunnerTools.Infrastructure.Files;
 using RunnerTools.Infrastructure.Identity;
 using RunnerTools.Infrastructure.Persistence;
 using RunnerTools.Infrastructure.Persistence.Interceptors;
 using RunnerTools.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -45,8 +47,10 @@ public static class ConfigureServices
         services.AddTransient<IIdentityService, IdentityService>();
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
-        services.AddAuthentication()
-            .AddIdentityServerJwt();
+        // services.AddAuthentication()
+        //     .AddIdentityServerJwt();
+        
+        services.AddAuthentication();
 
         services.AddAuthorization(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
