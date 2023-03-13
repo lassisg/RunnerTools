@@ -28,6 +28,11 @@ public static class ConfigureServices
 
         services.AddRazorPages();
 
+        services.ConfigureApplicationCookie(config =>
+        {
+            config.LoginPath = "/Account/Login";
+        });
+
         // Customise default API behaviour
         services.Configure<ApiBehaviorOptions>(options =>
                                                    options.SuppressModelStateInvalidFilter = true);
