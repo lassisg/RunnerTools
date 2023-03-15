@@ -2,6 +2,7 @@
 
 public class Workout : BaseAuditableEntity
 {
+    public int Id { get; set; }
     public Sport Sport { get; set; }
     public string? Capabilities { get; set; }
     public int NumberOfValidSteps { get; set; }
@@ -9,5 +10,5 @@ public class Workout : BaseAuditableEntity
     public SubSport? SubSport { get; set; }
     public int? PoolLenghtInMeters { get; set; }
     public DisplayMeasure? PoolLenghtUnit { get; set; } = DisplayMeasure.Metric;
-    public ICollection<WorkoutStep> WorkoutSteps { get; set; } = default!;
+    public IList<WorkoutStep> WorkoutSteps { get; private set; } = new List<WorkoutStep>();
 }
