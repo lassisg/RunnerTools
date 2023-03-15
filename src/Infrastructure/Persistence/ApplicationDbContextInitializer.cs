@@ -3,17 +3,18 @@ using RunnerTools.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using RunnerTools.Infrastructure.Persistence.Seeds;
 
 namespace RunnerTools.Infrastructure.Persistence;
 
-public class ApplicationDbContextInitialiser
+public class ApplicationDbContextInitializer
 {
-    private readonly ILogger<ApplicationDbContextInitialiser> _logger;
+    private readonly ILogger<ApplicationDbContextInitializer> _logger;
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
 
-    public ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitialiser> logger, ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+    public ApplicationDbContextInitializer(ILogger<ApplicationDbContextInitializer> logger, ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _logger = logger;
         _context = context;
@@ -87,7 +88,13 @@ public class ApplicationDbContextInitialiser
                     new TodoItem { Title = "Reward yourself with a nice, long nap 🏆" },
                 }
             });
+            
+            await _context.SaveChangesAsync();
+        }
 
+        if (!_context.Workouts.Any())
+        {
+            _context.Workouts.Add(WorkoutSeeder.Seed());
             await _context.SaveChangesAsync();
         }
     }
