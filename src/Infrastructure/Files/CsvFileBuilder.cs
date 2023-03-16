@@ -3,6 +3,7 @@ using RunnerTools.Application.Common.Interfaces;
 using RunnerTools.Application.TodoLists.Queries.ExportTodos;
 using RunnerTools.Infrastructure.Files.Maps;
 using CsvHelper;
+using RunnerTools.Application.Workouts.Queries.ExportWorkouts;
 
 namespace RunnerTools.Infrastructure.Files;
 
@@ -20,5 +21,10 @@ public class CsvFileBuilder : ICsvFileBuilder
         }
 
         return memoryStream.ToArray();
+    }
+
+    public byte[] BuildWorkoutFile(IEnumerable<WorkoutRecord> records)
+    {
+        throw new NotImplementedException();
     }
 }
