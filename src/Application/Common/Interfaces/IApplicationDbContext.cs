@@ -9,5 +9,9 @@ public interface IApplicationDbContext
 
     DbSet<TodoItem> TodoItems { get; }
 
+    public DbSet<Workout> Workouts { get; }
+    
+    public DbSet<WorkoutStep> WorkoutSteps { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
