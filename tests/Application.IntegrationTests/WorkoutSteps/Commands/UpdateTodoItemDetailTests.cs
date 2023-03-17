@@ -1,16 +1,6 @@
-﻿using RunnerTools.Application.Common.Exceptions;
-using RunnerTools.Application.TodoItems.Commands.CreateTodoItem;
-using RunnerTools.Application.TodoItems.Commands.UpdateTodoItem;
-using RunnerTools.Application.TodoLists.Commands.CreateTodoList;
-using RunnerTools.Domain.Entities;
-using FluentAssertions;
-using NUnit.Framework;
+﻿namespace RunnerTools.Application.IntegrationTests.WorkoutSteps.Commands;
 
-namespace RunnerTools.Application.IntegrationTests.TodoItems.Commands;
-
-using static Testing;
-
-public class UpdateTodoItemTests : BaseTestFixture
+public class UpdateTodoItemDetailTests : BaseTestFixture
 {
     // [Test]
     // public async Task ShouldRequireValidTodoItemId()
@@ -18,7 +8,7 @@ public class UpdateTodoItemTests : BaseTestFixture
     //     var command = new UpdateTodoItemCommand { Id = 99, Title = "New Title" };
     //     await FluentActions.Invoking(() => SendAsync(command)).Should().ThrowAsync<NotFoundException>();
     // }
-    //
+
     // [Test]
     // public async Task ShouldUpdateTodoItem()
     // {
@@ -35,10 +25,12 @@ public class UpdateTodoItemTests : BaseTestFixture
     //         Title = "New Item"
     //     });
     //
-    //     var command = new UpdateTodoItemCommand
+    //     var command = new UpdateTodoItemDetailCommand
     //     {
     //         Id = itemId,
-    //         Title = "Updated Item Title"
+    //         ListId = listId,
+    //         Note = "This is the note.",
+    //         Priority = PriorityLevel.High
     //     };
     //
     //     await SendAsync(command);
@@ -46,7 +38,9 @@ public class UpdateTodoItemTests : BaseTestFixture
     //     var item = await FindAsync<TodoItem>(itemId);
     //
     //     item.Should().NotBeNull();
-    //     item!.Title.Should().Be(command.Title);
+    //     item!.ListId.Should().Be(command.ListId);
+    //     item.Note.Should().Be(command.Note);
+    //     item.Priority.Should().Be(command.Priority);
     //     item.LastModifiedBy.Should().NotBeNull();
     //     item.LastModifiedBy.Should().Be(userId);
     //     item.LastModified.Should().NotBeNull();

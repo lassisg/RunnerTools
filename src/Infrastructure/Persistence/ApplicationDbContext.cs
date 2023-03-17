@@ -24,10 +24,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
         _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
     }
 
-    public DbSet<TodoList> TodoLists => Set<TodoList>();
-
-    public DbSet<TodoItem> TodoItems => Set<TodoItem>();
-
     public DbSet<Workout> Workouts => Set<Workout>();
     
     public DbSet<WorkoutStep> WorkoutSteps => Set<WorkoutStep>();

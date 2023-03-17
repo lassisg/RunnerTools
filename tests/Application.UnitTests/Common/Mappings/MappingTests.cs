@@ -2,7 +2,6 @@
 using AutoMapper;
 using RunnerTools.Application.Common.Mappings;
 using RunnerTools.Application.Common.Models;
-using RunnerTools.Application.TodoLists.Queries.GetTodos;
 using RunnerTools.Domain.Entities;
 using NUnit.Framework;
 
@@ -28,10 +27,8 @@ public class MappingTests
     }
 
     [Test]
-    [TestCase(typeof(TodoList), typeof(TodoListDto))]
-    [TestCase(typeof(TodoItem), typeof(TodoItemDto))]
-    [TestCase(typeof(TodoList), typeof(LookupDto))]
-    [TestCase(typeof(TodoItem), typeof(LookupDto))]
+    [TestCase(typeof(Workout), typeof(LookupDto))]
+    [TestCase(typeof(WorkoutStep), typeof(LookupDto))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);

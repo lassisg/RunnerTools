@@ -1,21 +1,20 @@
-﻿using RunnerTools.Application.Common.Exceptions;
-using RunnerTools.Application.Common.Security;
-using RunnerTools.Application.TodoLists.Commands.CreateTodoList;
-using RunnerTools.Application.TodoLists.Commands.PurgeTodoLists;
-using RunnerTools.Domain.Entities;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using RunnerTools.Application.Common.Exceptions;
+using RunnerTools.Application.Common.Security;
+using RunnerTools.Application.Workouts.Commands.CreateWorkout;
+using RunnerTools.Application.Workouts.Commands.PurgeWorkouts;
+using RunnerTools.Domain.Entities;
+using RunnerTools.Domain.Enums;
 
-namespace RunnerTools.Application.IntegrationTests.TodoLists.Commands;
+namespace RunnerTools.Application.IntegrationTests.Workouts.Commands;
 
-using static Testing;
-
-public class PurgeTodoListsTests : BaseTestFixture
+public class PurgeWorkoutsTests : BaseTestFixture
 {
     // [Test]
     // public async Task ShouldDenyAnonymousUser()
     // {
-    //     var command = new PurgeTodoListsCommand();
+    //     var command = new PurgeWorkoutsCommand();
     //
     //     command.GetType().Should().BeDecoratedWith<AuthorizeAttribute>();
     //
@@ -23,52 +22,55 @@ public class PurgeTodoListsTests : BaseTestFixture
     //
     //     await action.Should().ThrowAsync<UnauthorizedAccessException>();
     // }
-    //
+    
     // [Test]
     // public async Task ShouldDenyNonAdministrator()
     // {
     //     await RunAsDefaultUserAsync();
     //
-    //     var command = new PurgeTodoListsCommand();
+    //     var command = new PurgeWorkoutsCommand();
     //
     //     var action = () => SendAsync(command);
     //
     //     await action.Should().ThrowAsync<ForbiddenAccessException>();
     // }
-    //
+    
     // [Test]
     // public async Task ShouldAllowAdministrator()
     // {
     //     await RunAsAdministratorAsync();
     //
-    //     var command = new PurgeTodoListsCommand();
+    //     var command = new PurgeWorkoutsCommand();
     //
     //     var action = () => SendAsync(command);
     //
     //     await action.Should().NotThrowAsync<ForbiddenAccessException>();
     // }
-    //
+    
     // [Test]
-    // public async Task ShouldDeleteAllLists()
+    // public async Task ShouldDeleteAllWorkouts()
     // {
     //     await RunAsAdministratorAsync();
     //
-    //     await SendAsync(new CreateTodoListCommand
+    //     await SendAsync(new CreateWorkoutCommand
     //     {
-    //         Title = "New List #1"
+    //         Sport = Sport.Running,
+    //         NumberOfValidSteps = 7
     //     });
     //
-    //     await SendAsync(new CreateTodoListCommand
+    //     await SendAsync(new CreateWorkoutCommand
     //     {
-    //         Title = "New List #2"
+    //         Sport = Sport.Training,
+    //         NumberOfValidSteps = 3
     //     });
     //
-    //     await SendAsync(new CreateTodoListCommand
+    //     await SendAsync(new CreateWorkoutCommand
     //     {
-    //         Title = "New List #3"
+    //         Sport = Sport.Walking,
+    //         NumberOfValidSteps = 1
     //     });
     //
-    //     await SendAsync(new PurgeTodoListsCommand());
+    //     await SendAsync(new PurgeWorkoutsCommand());
     //
     //     var count = await CountAsync<TodoList>();
     //
