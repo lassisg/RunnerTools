@@ -1,8 +1,7 @@
 ﻿namespace RunnerTools.Domain.Entities;
 
-public class WorkoutStep
+public class WorkoutStep : BaseAuditableEntity
 {
-    public int Id { get; set; }
     public int WorkoutId { get; set; }
     public int Index { get; set; }
     public string? Name { get; set; }
