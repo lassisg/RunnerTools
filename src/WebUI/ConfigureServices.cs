@@ -22,9 +22,12 @@ public static class ConfigureServices
         services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();
 
-        services.AddControllersWithViews(options =>
-                                             options.Filters.Add<ApiExceptionFilterAttribute>())
-                .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
+        // services.AddControllersWithViews(options =>
+        //                                      options.Filters.Add<ApiExceptionFilterAttribute>())
+        //         .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
+
+        services.AddControllersWithViews(options => options.Filters.Add<ApiExceptionFilterAttribute>());
+        services.AddFluentValidationClientsideAdapters();
 
         services.AddRazorPages();
 
