@@ -23,7 +23,7 @@ public class GetWorkoutQueryHandler:IRequestHandler<GetWorkoutQuery, WorkoutVm>
     {
         return new WorkoutVm
         {
-            Lists = await _context.Workouts
+            Workouts = await _context.Workouts
                                   .AsNoTracking()
                                   .ProjectTo<WorkoutDto>(_mapper.ConfigurationProvider)
                                   .OrderBy(t => t.Name)

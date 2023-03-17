@@ -2,7 +2,6 @@
 
 public class Workout : BaseAuditableEntity
 {
-    public int Id { get; set; }
     public Sport Sport { get; set; }
     public string? Capabilities { get; set; }
     public int NumberOfValidSteps { get; set; }

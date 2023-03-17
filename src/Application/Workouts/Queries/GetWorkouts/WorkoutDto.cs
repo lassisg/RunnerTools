@@ -9,11 +9,11 @@ public class WorkoutDto : IMapFrom<Workout>
     public string? Name { get; set; }
     public int Sport { get; set; }
     public int NumberOfValidSteps { get; set; }
-    public IList<WorkoutStepDto> Steps { get; set; }
+    public IList<WorkoutStepDto> WorkoutSteps { get; set; }
     
     public WorkoutDto()
     {
-        Steps = new List<WorkoutStepDto>();
+        WorkoutSteps = new List<WorkoutStepDto>();
     }
     
 }

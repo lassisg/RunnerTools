@@ -2,6 +2,6 @@
 
 public class WorkoutVm
 {
-    public IList<WorkoutDto> Lists { get; set; } = new List<WorkoutDto>();
+    public IList<WorkoutDto> Workouts { get; set; } = new List<WorkoutDto>();
     
 }
