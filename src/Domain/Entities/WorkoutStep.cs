@@ -2,7 +2,6 @@
 
 public class WorkoutStep : BaseAuditableEntity
 {
-    public int WorkoutId { get; set; }
     public int Index { get; set; }
     public string? Name { get; set; }
     public StepDuration DurationType { get; set; } = StepDuration.Distance;
@@ -13,5 +12,6 @@ public class WorkoutStep : BaseAuditableEntity
     public int? TargetHigh { get; set; }
     public Intensity? Intensity { get; set; }
     public string? Notes { get; set; }
+    public int WorkoutId { get; set; }
     public Workout Workout { get; set; } = null!;
 }

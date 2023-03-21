@@ -1,14 +1,14 @@
-﻿namespace RunnerTools.Application.Workouts.Queries.ExportWorkouts;
+﻿namespace RunnerTools.Application.Activities.Queries.ExportActivities;
 
-public class ExportWorkoutVm
+public class ExportActivityVm
 {
     public string FileName { get; set; }
 
     public string ContentType { get; set; }
 
     public byte[] Content { get; set; }
-    
-    public ExportWorkoutVm(string fileName, string contentType, byte[] content)
+ 
+    public ExportActivityVm(string fileName, string contentType, byte[] content)
     {
         FileName = fileName;
         ContentType = contentType;
