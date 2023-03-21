@@ -29,7 +29,7 @@ public class UpdateWorkoutCommandHandler : IRequestHandler<UpdateWorkoutCommand>
 
         if (entity == null)
         {
-            throw new NotFoundException(nameof(Workout), request.Sport);
+            throw new NotFoundException(nameof(Workout), request.Id);
         }
 
         entity.Sport = request.Sport;
