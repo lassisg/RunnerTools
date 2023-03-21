@@ -28,6 +28,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
     
     public DbSet<WorkoutStep> WorkoutSteps => Set<WorkoutStep>();
     
+    public DbSet<Activity> Activities => Set<Activity>();
+    
+    public DbSet<Session> Sessions => Set<Session>();
+    
+    public DbSet<Lap> Laps => Set<Lap>();
+    
+    public DbSet<Record> Records => Set<Record>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
