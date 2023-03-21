@@ -155,7 +155,7 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("RunnerTools.Domain.Entities.TodoItem", b =>
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Activity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,40 +169,24 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Done")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ListId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Reminder")
+                    b.Property<DateTime>("LocalTimeStamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.Property<int>("SessionCount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ListId");
-
-                    b.ToTable("TodoItems");
+                    b.ToTable("Activities");
                 });
 
-            modelBuilder.Entity("RunnerTools.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Lap", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -222,14 +206,111 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.Property<int?>("SessionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TotalElapsedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TotalTimerTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoLists");
+                    b.HasIndex("SessionId");
+
+                    b.ToTable("Laps");
+                });
+
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Record", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Cadence")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Records");
+                });
+
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Session", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Distance")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Sport")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("SubSport")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TotalDuration")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TotalElapsedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TotalTimerTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("RunnerTools.Domain.Entities.Workout", b =>
@@ -286,6 +367,12 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
@@ -297,6 +384,12 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
 
                     b.Property<int?>("Intensity")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -442,38 +535,18 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RunnerTools.Domain.Entities.TodoItem", b =>
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Lap", b =>
                 {
-                    b.HasOne("RunnerTools.Domain.Entities.TodoList", "List")
-                        .WithMany("Items")
-                        .HasForeignKey("ListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("List");
+                    b.HasOne("RunnerTools.Domain.Entities.Session", null)
+                        .WithMany("Laps")
+                        .HasForeignKey("SessionId");
                 });
 
-            modelBuilder.Entity("RunnerTools.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Session", b =>
                 {
-                    b.OwnsOne("RunnerTools.Domain.ValueObjects.Colour", "Colour", b1 =>
-                        {
-                            b1.Property<int>("TodoListId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("Code")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("TodoListId");
-
-                            b1.ToTable("TodoLists");
-
-                            b1.WithOwner()
-                                .HasForeignKey("TodoListId");
-                        });
-
-                    b.Navigation("Colour")
-                        .IsRequired();
+                    b.HasOne("RunnerTools.Domain.Entities.Activity", null)
+                        .WithMany("Sessions")
+                        .HasForeignKey("ActivityId");
                 });
 
             modelBuilder.Entity("RunnerTools.Domain.Entities.WorkoutStep", b =>
@@ -487,9 +560,14 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
                     b.Navigation("Workout");
                 });
 
-            modelBuilder.Entity("RunnerTools.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Activity", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("RunnerTools.Domain.Entities.Session", b =>
+                {
+                    b.Navigation("Laps");
                 });
 
             modelBuilder.Entity("RunnerTools.Domain.Entities.Workout", b =>
