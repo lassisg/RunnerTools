@@ -7,10 +7,13 @@ public class UpdateActivityCommandValidator : AbstractValidator<UpdateActivityCo
     public UpdateActivityCommandValidator()
     {
         RuleFor(a => a.LocalTimeStamp)
-            .NotEmpty().NotNull().WithMessage("Local timestamp is required.");
+            .NotEmpty().WithMessage("Local timestamp must not be empty.")
+            .NotNull().WithMessage("Local timestamp is required.");
         RuleFor(a => a.SessionCount)
-            .NotEmpty().NotNull().WithMessage("Session count is required.");
+            .NotEmpty().WithMessage("Session count must not be empty.")
+            .NotNull().WithMessage("Session count is required.");
         RuleFor(a => a.Sessions)
-            .NotEmpty().NotNull().WithMessage("There must be at least one session.");
+            .NotEmpty().WithMessage("There must not be empty.")
+            .NotNull().WithMessage("At least one Session is required.");
     }
 }

@@ -1,7 +1,8 @@
-﻿using MediatR;
+﻿using Dynastream.Fit;
+using MediatR;
 using RunnerTools.Application.Common.Interfaces;
 using RunnerTools.Domain.Entities;
-using RunnerTools.Domain.Enums;
+using Sport = RunnerTools.Domain.Enums.Sport;
 
 namespace RunnerTools.Application.Workouts.Commands.CreateWorkout;
 
