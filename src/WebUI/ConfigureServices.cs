@@ -22,13 +22,12 @@ public static class ConfigureServices
         services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();
 
-        // services.AddControllersWithViews(options =>
-        //                                      options.Filters.Add<ApiExceptionFilterAttribute>())
-        //         .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
-
-        services.AddControllersWithViews(options => options.Filters.Add<ApiExceptionFilterAttribute>());
+        services.AddControllersWithViews(options => 
+                                             options.Filters.Add<ApiExceptionFilterAttribute>());
+        
+        services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
-
+        
         services.AddRazorPages();
 
         services.ConfigureApplicationCookie(config =>
@@ -37,22 +36,21 @@ public static class ConfigureServices
         });
 
         // Customise default API behaviour
-        services.Configure<ApiBehaviorOptions>(options =>
-                                                   options.SuppressModelStateInvalidFilter = true);
+        services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
-        services.AddOpenApiDocument(configure =>
-        {
-            configure.Title = "RunnerTools API";
-            configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
-            {
-                Type = OpenApiSecuritySchemeType.ApiKey,
-                Name = "Authorization",
-                In = OpenApiSecurityApiKeyLocation.Header,
-                Description = "Type into the textbox: Bearer {your JWT token}."
-            });
-
-            configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
-        });
+        // services.AddOpenApiDocument(configure =>
+        // {
+        //     configure.Title = "RunnerTools API";
+        //     configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
+        //     {
+        //         Type = OpenApiSecuritySchemeType.ApiKey,
+        //         Name = "Authorization",
+        //         In = OpenApiSecurityApiKeyLocation.Header,
+        //         Description = "Type into the textbox: Bearer {your JWT token}."
+        //     });
+        //
+        //     configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+        // });
 
         return services;
     }
