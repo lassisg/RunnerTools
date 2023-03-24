@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using MediatR;
 using RunnerTools.Application.Common.Interfaces;
 using RunnerTools.Domain.Entities;
+using RunnerTools.Domain.Enums;
 
 namespace RunnerTools.Application.Activities.Commands.CreateActivity;
 
@@ -15,7 +16,7 @@ public record CreateActivityCommand : IRequest<int>
     
     [Display(Name="Number of sessions")]
     public int SessionCount { get; set; }
-    public IList<Session> Sessions { get; set; }
+    public IList<Session>? Sessions { get; set; }
 }
 
 public class CreateActivityCommandHandler : IRequestHandler<CreateActivityCommand, int>
@@ -37,7 +38,7 @@ public class CreateActivityCommandHandler : IRequestHandler<CreateActivityComman
             SessionCount = request.SessionCount,
             Sessions = request.Sessions
         };
-
+        
         await _context.Activities.AddAsync(entity, cancellationToken);
 
         await _context.SaveChangesAsync(cancellationToken);

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Dynastream.Fit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RunnerTools.Application.Common.Interfaces;
@@ -21,13 +22,15 @@ public class GetActivitiesQueryHandler : IRequestHandler<GetActivitiesQuery, Act
 
     public async Task<ActivitiesVm> Handle(GetActivitiesQuery request, CancellationToken cancellationToken)
     {
-        return new ActivitiesVm
+        var activities = await _context.Activities
+                                       .AsNoTracking()
+                                       .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider)
+                                       .ToListAsync(cancellationToken);
+        var activitiesVm = new ActivitiesVm
         {
-            Activities = await _context.Activities
-                                     .AsNoTracking()
-                                     .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider)
-                                     .OrderBy(a => a.LocalTimeStamp)
-                                     .ToListAsync(cancellationToken)
+            Activities = activities
         };
+        
+        return activitiesVm;
     }
 }

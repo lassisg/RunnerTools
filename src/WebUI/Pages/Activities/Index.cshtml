@@ -1,6 +1,7 @@
 ﻿@page
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using RunnerTools.Application.Activities.Queries.GetActivities
 @using RunnerTools.Infrastructure.Identity
 @model Activities.Index
 
@@ -36,28 +37,26 @@
         </tr>
     </thead>
     <tbody>
-        @{ int i = 0;}
-        @foreach (var item in Model.Data.Activities)
+        @foreach (ActivityDto item in Model.Data.Activities)
         {
             <tr>
-                <td><display-tag for="Data.Activities[i].Id"/>
+                <td>@item.Id
                 </td>
-                <td><display-tag for="Data.Activities[i].Name" />
+                <td>@item.Name
                 </td>
-                <td><display-tag for="Data.Activities[i].LocalTimeStamp" />
+                <td>@item.LocalTimeStamp
                 </td>
-                <td><display-tag for="Data.Activities[i].SessionCount" />
+                <td>@item.SessionCount
                 </td>
                     
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <td>
-                        <a asp-page="Details" asp-route-id="Data.Activities[i].Id">Details</a> |
-                        <a asp-page="Delete" asp-route-id="Data.Activities[i].Id">Delete</a>
+                        <a asp-page="Details" asp-route-id="item.Id">Details</a> |
+                        <a asp-page="Delete" asp-route-id="item.Id">Delete</a>
                     </td>
                 }
             </tr>
-            i++;
         }
     </tbody>
 </table>
