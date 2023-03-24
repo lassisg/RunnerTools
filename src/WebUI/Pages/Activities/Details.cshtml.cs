@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RunnerTools.Application.Activities.Queries.ExportActivities;
 using RunnerTools.Application.Activities.Queries.GetActivities;
 
 namespace WebUI.Pages.Activities;
