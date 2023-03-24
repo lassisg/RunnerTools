@@ -23,7 +23,7 @@ public class GetSessionQueryHandler : IRequestHandler<GetSessionQuery, SessionVm
     {
         return new SessionVm
         {
-            Sessions = await _context.Workouts
+            Sessions = await _context.Sessions
                                      .AsNoTracking()
                                      .ProjectTo<SessionDto>(_mapper.ConfigurationProvider)
                                      .OrderBy(s => s.Timestamp)

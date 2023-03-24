@@ -1,0 +1,17 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using RunnerTools.Infrastructure.Identity
+@model Workouts.Index
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Workouts";
+}
+
+<h2>Workouts</h2>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <p><a asp-page="Create">Create New</a></p>
+}

@@ -8,12 +8,16 @@ public class UpdateLapCommandValidator : AbstractValidator<UpdateLapCommand>
     public UpdateLapCommandValidator()
     {
         RuleFor(l=>l.StartTime)
-            .NotEmpty().NotNull().WithMessage("Start time is required.");
+            .NotEmpty().WithMessage("Start time is required.")
+            .NotNull().WithMessage("Start time is required.");
         RuleFor(l=>l.TotalElapsedTime)
-            .NotEmpty().NotNull().WithMessage("Total elapsed time is required.");
+            .NotEmpty().WithMessage("Total elapsed time must not be empty.")
+            .NotNull().WithMessage("Total elapsed time is required.");
         RuleFor(l=>l.TotalTimerTime)
-            .NotEmpty().NotNull().WithMessage("Total timer time is required.");
+            .NotEmpty().WithMessage("Total timer time must not be empty.")
+            .NotNull().WithMessage("Total timer time is required.");
         RuleFor(l=>l.Timestamp)
-            .NotEmpty().NotNull().WithMessage("Timestamp is required.");
+            .NotEmpty().WithMessage("Timestamp must not be empty.")
+            .NotNull().WithMessage("Timestamp is required.");
     }
 }

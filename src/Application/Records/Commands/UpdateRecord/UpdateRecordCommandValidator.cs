@@ -7,6 +7,7 @@ public class UpdateRecordCommandValidator : AbstractValidator<UpdateRecordComman
     public UpdateRecordCommandValidator()
     {
         RuleFor(r=>r.Timestamp)
-            .NotEmpty().NotNull().WithMessage("Timestamp is required.");
+            .NotEmpty().WithMessage("Timestamp must not be empty.")
+            .NotNull().WithMessage("Timestamp is required.");
     }
 }

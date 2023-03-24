@@ -2,5 +2,7 @@
 
 public class ActivityVm
 {
-    public IList<ActivityDto> Activities { get; set; } = new List<ActivityDto>();
+    public string Name { get; set; }
+    public DateTime LocalTimeStamp { get; set; }
+    public int SessionCount { get; set; }
 }

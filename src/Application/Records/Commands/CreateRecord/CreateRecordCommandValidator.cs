@@ -7,6 +7,7 @@ public class CreateRecordCommandValidator : AbstractValidator<CreateRecordComman
     public CreateRecordCommandValidator()
     {
         RuleFor(r=>r.Timestamp)
-            .NotEmpty().NotNull().WithMessage("Timestamp is required.");
+            .NotEmpty().WithMessage("Timestamp must not be empty.")
+            .NotNull().WithMessage("Timestamp is required.");
     }
 }

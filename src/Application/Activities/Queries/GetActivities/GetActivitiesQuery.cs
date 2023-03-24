@@ -6,24 +6,24 @@ using RunnerTools.Application.Common.Interfaces;
 
 namespace RunnerTools.Application.Activities.Queries.GetActivities;
 
-public record GetActivityQuery : IRequest<ActivityVm>;
+public record GetActivitiesQuery : IRequest<ActivitiesVm>;
 
-public class GetActivityQueryHandler : IRequestHandler<GetActivityQuery,ActivityVm>
+public class GetActivitiesQueryHandler : IRequestHandler<GetActivitiesQuery, ActivitiesVm>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public GetActivityQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public GetActivitiesQueryHandler(IApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
 
-    public async Task<ActivityVm> Handle(GetActivityQuery request, CancellationToken cancellationToken)
+    public async Task<ActivitiesVm> Handle(GetActivitiesQuery request, CancellationToken cancellationToken)
     {
-        return new ActivityVm
+        return new ActivitiesVm
         {
-            Activities = await _context.Workouts
+            Activities = await _context.Activities
                                      .AsNoTracking()
                                      .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider)
                                      .OrderBy(a => a.LocalTimeStamp)

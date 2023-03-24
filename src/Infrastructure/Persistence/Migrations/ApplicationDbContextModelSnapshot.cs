@@ -178,6 +178,10 @@ namespace RunnerTools.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("LocalTimeStamp")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SessionCount")
                         .HasColumnType("int");
 
