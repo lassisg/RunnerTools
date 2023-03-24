@@ -22,16 +22,8 @@
 
     <ItemGroup>
       <Reference Include="Fit">
-        <HintPath>..\..\..\..\..\Users\Leandro\Downloads\FitSDKRelease_21.105.00\cs\Fit.dll</HintPath>
+        <HintPath>ExternalLibs\FitSDK\21.105.00\Fit.dll</HintPath>
       </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Activities\Queries\ExportActivities" />
-      <Folder Include="Activities\Queries\GetActivities" />
-      <Folder Include="Laps\Queires\GetLaps" />
-      <Folder Include="Records\Queires\GetRecords" />
-      <Folder Include="Sessions\Queires\GetSessions" />
     </ItemGroup>
 
 </Project>

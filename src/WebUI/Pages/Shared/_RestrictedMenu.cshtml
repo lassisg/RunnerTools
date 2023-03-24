@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using RunnerTools.Infrastructure.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Activities/Index">Activities</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Workouts/Index">Workouts</a>
+    </li>
+}

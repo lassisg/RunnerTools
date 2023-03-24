@@ -23,7 +23,7 @@ public class GetRecordsQueryHandler : IRequestHandler<GetRecordsQuery, RecordVm>
     {
         return new RecordVm
         {
-            Records = await _context.Workouts
+            Records = await _context.Records
                                      .AsNoTracking()
                                      .ProjectTo<RecordDto>(_mapper.ConfigurationProvider)
                                      .OrderBy(r => r.Timestamp)
