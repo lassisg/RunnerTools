@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using AutoMapper.QueryableExtensions;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RunnerTools.Application.Activities.Queries.GetActivities;
 using RunnerTools.Application.Common.Exceptions;
 using RunnerTools.Application.Common.Interfaces;
 using RunnerTools.Domain.Entities;
@@ -21,13 +23,10 @@ public class DeleteActivityCommandHandler : IRequestHandler<DeleteActivityComman
     public async Task Handle(DeleteActivityCommand request, CancellationToken cancellationToken)
     {
         var entity = await _context.Activities
-                                   .Where(a => a.Id == request.Id)
-                                   .SingleOrDefaultAsync(cancellationToken);
+                                   .SingleOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
 
         if (entity == null)
-        {
             throw new NotFoundException(nameof(Activity), request.Id);
-        }
 
         _context.Activities.Remove(entity);
 

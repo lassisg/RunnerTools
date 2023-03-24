@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RunnerTools.Application.Activities.Commands.DeleteActivity;
 using RunnerTools.Application.Activities.Queries.GetActivities;
 
 namespace WebUI.Pages.Activities;
@@ -14,14 +15,16 @@ public class Delete : PageModel
     public Delete(IMediator mediator) => _mediator = mediator;
 
     [BindProperty]
-    public ActivitiesVm Data { get; set; }
+    public ActivityVm Data { get; set; }
 
-    public async Task OnGetAsync(GetActivitiesQuery query) => 
-        Data = await _mediator.Send(query);
+    public async Task OnGetAsync(GetActivityDetailQuery query) => 
+        Data = await _mediator.Send(query); 
 
     public async Task<IActionResult> OnPostAsync()
     {
-        await _mediator.Send(Data);
+        var deleteCommand = new DeleteActivityCommand(Data.Id);
+        
+        await _mediator.Send(deleteCommand);
 
         return RedirectToPage("Index");
     }
