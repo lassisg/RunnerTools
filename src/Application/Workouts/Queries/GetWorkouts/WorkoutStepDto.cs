@@ -21,8 +21,8 @@ public class WorkoutStepDto : IMapFrom<WorkoutStep>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<WorkoutStep, WorkoutStepDto>()
-               .ForMember(w => w.StepDuration, opt => opt.MapFrom(s => s.DurationType));
+               .ForMember(w => w.StepDuration, opt => opt.MapFrom(s => s.DurationType.ToString()));
         profile.CreateMap<WorkoutStep, WorkoutStepDto>()
-               .ForMember(w => w.StepTarget, opt => opt.MapFrom(s => s.TargetType));
+               .ForMember(w => w.StepTarget, opt => opt.MapFrom(s => s.TargetType.ToString()));
     }
 }

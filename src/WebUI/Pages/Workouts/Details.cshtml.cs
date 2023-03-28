@@ -1,8 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RunnerTools.Application.Activities.Queries.GetActivities;
+using RunnerTools.Application.Workouts.Queries.GetWorkouts;
 
-namespace WebUI.Pages.Activities;
+namespace WebUI.Pages.Workouts;
 
 public class Details : PageModel
 {
@@ -10,8 +11,8 @@ public class Details : PageModel
 
     public Details(IMediator mediator) => _mediator = mediator;
 
-    public ActivityVm Data { get; private set; }
+    public WorkoutVm Data { get; private set; }
 
-    public async Task OnGetAsync(GetActivityDetailQuery query) => 
+    public async Task OnGetAsync(GetWorkoutDetailQuery query) => 
         Data = await _mediator.Send(query);
 }

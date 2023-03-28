@@ -16,7 +16,7 @@ public class GetWorkoutsTests : BaseTestFixture
     {
         await RunAsDefaultUserAsync();
 
-        var query = new GetWorkoutQuery();
+        var query = new GetWorkoutsQuery();
 
         var result = await SendAsync(query);
 
@@ -88,7 +88,7 @@ public class GetWorkoutsTests : BaseTestFixture
                     }
         });
 
-        var query = new GetWorkoutQuery();
+        var query = new GetWorkoutsQuery();
 
         var result = await SendAsync(query);
 
@@ -99,7 +99,7 @@ public class GetWorkoutsTests : BaseTestFixture
     [Test]
     public async Task ShouldDenyAnonymousUser()
     {
-        var query = new GetWorkoutQuery();
+        var query = new GetWorkoutsQuery();
 
         var action = () => SendAsync(query);
         

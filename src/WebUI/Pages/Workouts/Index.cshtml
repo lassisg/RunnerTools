@@ -1,5 +1,7 @@
 ﻿@page
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using RunnerTools.Application.Workouts.Queries.GetWorkouts
 @using RunnerTools.Infrastructure.Identity
 @model Workouts.Index
 
@@ -9,9 +11,52 @@
     ViewData["Title"] = "Workouts";
 }
 
-<h2>Workouts</h2>
+<h2>@ViewData["Title"]</h2>
 
 @if (SignInManager.IsSignedIn(User))
 {
     <p><a asp-page="Create">Create New</a></p>
 }
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Number
+        </th>
+        <th>Name
+        </th>
+        <th>Time
+        </th>
+        <th>Number of sessions
+        </th>
+                    
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <th></th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (WorkoutDto item in Model.Data.Workouts)
+    {
+        <tr>
+            <td>@item.Id
+            </td>
+            <td>@item.Name
+            </td>
+            <td>@item.Sport
+            </td>
+            <td>@item.NumberOfValidSteps
+            </td>
+                    
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <td>
+                    <a asp-page="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
