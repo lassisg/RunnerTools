@@ -1,9 +1,9 @@
 ﻿using System.Runtime.Serialization;
+using NUnit.Framework;
 using AutoMapper;
 using RunnerTools.Application.Common.Mappings;
-using RunnerTools.Application.Common.Models;
+using RunnerTools.Application.Workouts.Queries.GetWorkouts;
 using RunnerTools.Domain.Entities;
-using NUnit.Framework;
 
 namespace RunnerTools.Application.UnitTests.Common.Mappings;
 
@@ -27,8 +27,8 @@ public class MappingTests
     }
 
     [Test]
-    [TestCase(typeof(Workout), typeof(LookupDto))]
-    [TestCase(typeof(WorkoutStep), typeof(LookupDto))]
+    [TestCase(typeof(Workout), typeof(WorkoutDto))]
+    [TestCase(typeof(WorkoutStep), typeof(WorkoutStepDto))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);
