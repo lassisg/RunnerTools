@@ -1,0 +1,56 @@
+﻿@page
+@using RunnerTools.Domain.Enums
+@model Workouts.Create
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@ViewData["Title"] Workout</h2>
+
+@* <h4>Activity</h4> *@
+<hr />
+@* <div class="card"> *@
+@*     <p>@Model.Data.Activities.First().Name.ToString()</p> *@
+@* </div> *@
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Data.Name"></label>
+                <input class="form-control" asp-for="Data.Name" type="text">
+                <span class="text-danger" asp-validation-for="Data.Name"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Data.Sport"></label>
+                <select class="form-control" asp-for="Data.Sport">
+                    @foreach (Sport sport in Enum.GetValues(typeof(Sport)))
+                    {
+                        if (sport != Sport.Generic && sport != Sport.Invalid)
+                        {
+                            <option value="@sport">@sport.ToString()</option>
+                        }
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="Data.Sport"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Data.NumberOfValidSteps"></label>
+                <input class="form-control" asp-for="Data.NumberOfValidSteps" type="text">
+                <span class="text-danger" asp-validation-for="Data.NumberOfValidSteps"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

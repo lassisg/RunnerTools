@@ -8,6 +8,7 @@ namespace RunnerTools.Application.Workouts.Commands.CreateWorkout;
 
 public record CreateWorkoutCommand : IRequest<int>
 {
+    public string Name { get; set; }
     public Sport Sport { get; set; }
     public int NumberOfValidSteps { get; set; }
 }
