@@ -1,4 +1,6 @@
-﻿namespace RunnerTools.Application.Basic;
+﻿using RunnerTools.Application.Common.Models;
+
+namespace RunnerTools.Application.Basic;
 
 public static class BasicCalculations
 {
@@ -7,24 +9,33 @@ public static class BasicCalculations
     
     public static TimeSpan ToCadence(this decimal speed)
     {
-        var cadenceNumeric = MinutesInHour / speed;
-        var cadenceMinutes = (int)cadenceNumeric;
-        var cadenceSeconds = (int)((cadenceNumeric - cadenceMinutes) * SecondsInMinute);
-        
-        return new TimeSpan(0, cadenceMinutes, cadenceSeconds);
+        var cadenceInSeconds = MinutesInHour * SecondsInMinute / speed;
+        var totalSeconds = (int)Decimal.Round(cadenceInSeconds);
+        var cadence = new TimeSpan(0, 0, totalSeconds);
+
+        return cadence;
     }
     
     public static decimal ToSpeed(this TimeSpan cadence)
     {
-        var cadenceMinutes = cadence.Minutes;
-        var cadenceSeconds = cadence.Seconds;
-        decimal cadenceNumeric = cadenceMinutes + (decimal)cadenceSeconds/SecondsInMinute;
-        decimal speed = MinutesInHour / cadenceNumeric;
+        var cadenceInMinutes =(decimal)cadence.TotalMinutes;
+        var speed = MinutesInHour / cadenceInMinutes;
+        var speedWithPrecision = Decimal.Round(speed, 2);
         
-        return Decimal.Round(speed,2);
+        return speedWithPrecision;
     }
-}
 
-public class Timespan
-{
+    public static TimeSpan GetTargetCadence(decimal distance, TimeSpan duration)
+    {
+        var durationInSeconds = (decimal)duration.TotalSeconds;
+        
+        var cadenceInSeconds = durationInSeconds / distance;
+        var cadenceTotalSeconds = (int)Decimal.Round(cadenceInSeconds, 0);
+        
+        var targetCadence = new TimeSpan(0, 0, cadenceTotalSeconds);
+        
+        return targetCadence;
+    }
+
+    
 }
