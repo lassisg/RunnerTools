@@ -7,7 +7,7 @@ public static class BasicCalculations
     private const int MinutesInHour = 60;
     private const int SecondsInMinute = 60;
     
-    public static TimeSpan ToCadence(this decimal speed)
+    public static TimeSpan SpeedToCadence(decimal speed)
     {
         var cadenceInSeconds = MinutesInHour * SecondsInMinute / speed;
         var totalSeconds = (int)Decimal.Round(cadenceInSeconds);
@@ -16,7 +16,7 @@ public static class BasicCalculations
         return cadence;
     }
     
-    public static decimal ToSpeed(this TimeSpan cadence)
+    public static decimal CadenceToSpeed(TimeSpan cadence)
     {
         var cadenceInMinutes =(decimal)cadence.TotalMinutes;
         var speed = MinutesInHour / cadenceInMinutes;
@@ -24,7 +24,7 @@ public static class BasicCalculations
         
         return speedWithPrecision;
     }
-
+    
     public static TimeSpan GetTargetCadence(decimal distance, TimeSpan duration)
     {
         var durationInSeconds = (decimal)duration.TotalSeconds;

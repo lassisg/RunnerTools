@@ -17,7 +17,7 @@ public class BasicCalculationsTests
     {
         var expectedCadence = new TimeSpan(0, targetCadenceMinutes, targetCadenceSeconds);
         
-        var cadence = speed.ToCadence();
+        var cadence = BasicCalculations.SpeedToCadence(speed);
 
         cadence.Should().Be(expectedCadence);
     }
@@ -31,7 +31,7 @@ public class BasicCalculationsTests
     {
         var cadence = new TimeSpan(0, cadenceMinutes, cadenceSeconds);
         
-        var speed = cadence.ToSpeed();
+        var speed = BasicCalculations.CadenceToSpeed(cadence);
 
         speed.Should().BeApproximately(targetSpeed,0.05M);
     }
