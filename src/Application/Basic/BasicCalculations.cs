@@ -47,4 +47,15 @@ public static class BasicCalculations
         return speedWithPrecision;
     }
     
+    public static TimeSpan GetTargetDuration(decimal distance, TimeSpan cadence)
+    {
+        var cadenceInSeconds = (decimal)cadence.TotalSeconds;
+        
+        var durationInSeconds = cadenceInSeconds * distance;
+        var durationTotalSeconds = (int)Decimal.Round(durationInSeconds, 0);
+        
+        var targetDuration = new TimeSpan(0, 0, durationTotalSeconds);
+        
+        return targetDuration;
+    }
 }

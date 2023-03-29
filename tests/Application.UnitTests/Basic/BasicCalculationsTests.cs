@@ -69,5 +69,19 @@ public class BasicCalculationsTests
         speed.Should().BeApproximately(targetSpeed, 0.05M);
     }
     
-    
+    [Test]
+    [TestCase(5, 5, 10, 0, 25, 50)]
+    [TestCase(10, 5, 20, 0, 53, 20)]
+    [TestCase(21.097, 5, 30, 1, 56, 02)]
+    [TestCase(42.195, 6, 00, 4, 13, 10)]
+    [TestCase(65.00, 8, 30, 9, 12, 30)]
+    public void ShouldReturnCorrectTargetDuration(decimal distance, int cadenceMinutes, int cadenceSeconds, int targetDurationHours, int targetDurationMinutes, int targetDurationSeconds)
+    {
+        var targetDuration = new TimeSpan(targetDurationHours, targetDurationMinutes, targetDurationSeconds);
+        var cadence = new TimeSpan(0, cadenceMinutes, cadenceSeconds);
+        
+        var duration = BasicCalculations.GetTargetDuration(distance, cadence);
+
+        duration.Should().BeCloseTo(targetDuration, 1.Seconds());
+    }
 }
