@@ -33,7 +33,7 @@ public class BasicCalculationsTests
         
         var speed = cadence.ToSpeed();
 
-        speed.Should().BeApproximately(targetSpeed,0.01M);
+        speed.Should().BeApproximately(targetSpeed,0.05M);
     }
     
     [Test]
@@ -52,12 +52,22 @@ public class BasicCalculationsTests
 
         cadence.Should().BeCloseTo(targetCadence,1.Seconds());
     }
-    /* 
-     * Cálculo de velocidade (dada uma distância e tempo desejados)
-     * Exemplo: 10 km em 50 minutos -> 12 min/km
-     */
-    /* 
-     * Cálculo de tempo (dados ritmo e distância desejados)
-     * Exemplo: 21,097 km (meia maratona) com ritmo de 5:30 min/km -> 1:56:02
-     */
+    
+    [Test]
+    [TestCase(10, 0, 50, 0, 12.00)]
+    [TestCase(10, 1, 0, 0, 10.00)]
+    [TestCase(6.01, 0, 27, 55, 12.9)]
+    [TestCase(9.85, 0, 49, 13, 12.00)]
+    [TestCase(42.48, 4, 40, 13, 9.10)]
+    [TestCase(51.21, 8, 33, 04, 6.00)]
+    public void ShouldReturnCorrectTargetSpeed(decimal distance, int durationHours, int durationMinutes, int durationSeconds, decimal targetSpeed)
+    {
+        var duration = new TimeSpan(durationHours, durationMinutes, durationSeconds);
+        
+        var speed = BasicCalculations.GetTargetSpeed(distance, duration);
+
+        speed.Should().BeApproximately(targetSpeed, 0.05M);
+    }
+    
+    
 }

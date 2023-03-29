@@ -37,5 +37,14 @@ public static class BasicCalculations
         return targetCadence;
     }
 
+    public static decimal GetTargetSpeed(decimal distance, TimeSpan duration)
+    {
+        var durationInMinutes = (decimal)duration.TotalMinutes;
+        
+        var speed = MinutesInHour * distance / durationInMinutes;
+        var speedWithPrecision = Decimal.Round(speed, 2);
+        
+        return speedWithPrecision;
+    }
     
 }
