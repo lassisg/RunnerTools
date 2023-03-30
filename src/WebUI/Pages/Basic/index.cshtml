@@ -5,8 +5,36 @@
     ViewData["Title"] = "Basic calculations";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="mb-4">@ViewData["Title"]</h2>
 
-<ul>
-    <li>Add cards for basic calculations</li>
-</ul>
+<form method="post" class="col-4 mb-3 mb-sm-0">
+    <div class="card">
+        <div class="card-header">
+            <h3>Speed to Cadence</h3>
+        </div>
+        <div class="card-body">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3 row">
+                <label class="col-3 col-form-label" asp-for="Data.Speed"></label>
+                <div class="col-3">
+                    <input class="form-control" asp-for="Data.Speed" type="number">
+                    <span class="text-danger" asp-validation-for="Data.Speed"></span>
+                </div>
+                <label class="col-auto col-form-label ps-0">km/h</label>
+            </div>
+            
+            @if (Model.ModelState.Any())
+            {
+            <div class="row">
+                <label class="col-3 col-form-label" asp-for="Data.Cadence"></label>
+                <label class="col-auto col-form-label">
+                    <span class="fw-bold">@($"{Model.Data.Cadence:mm\\:ss}")</span> min/km
+                </label>
+            </div>
+            }
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Calculate" class="btn btn-primary"/>
+        </div>
+    </div>
+</form>

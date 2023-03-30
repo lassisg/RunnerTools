@@ -26,4 +26,8 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Simples\Commands\CalculateSpeed" />
+    </ItemGroup>
+
 </Project>
