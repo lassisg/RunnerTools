@@ -19,9 +19,6 @@ public class Delete : PageModel
     [BindProperty]
     public WorkoutVm Data { get; set; }
 
-    // public async Task OnGetAsync(GetWorkoutDetailQuery query) => 
-    //     Data = await _mediator.Send(query); 
-
     public async Task OnGetAsync(GetWorkoutDetailQuery query)
     {
         Data = await _mediator.Send(query); 
