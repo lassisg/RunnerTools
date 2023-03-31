@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace RunnerTools.Application.Simples.Commands.CalculateCadence;
+namespace RunnerTools.Application.Basics.Commands.CalculateCadenceFromSpeed;
 
 public class CalculateCadenceFromSpeedCommandValidator : AbstractValidator<CalculateCadenceFromSpeedCommand>
 {

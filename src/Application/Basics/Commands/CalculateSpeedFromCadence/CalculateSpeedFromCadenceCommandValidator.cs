@@ -1,0 +1,18 @@
+﻿using FluentValidation;
+
+namespace RunnerTools.Application.Basics.Commands.CalculateSpeedFromCadence;
+
+public class CalculateSpeedFromCadenceCommandValidator : AbstractValidator<CalculateSpeedFromCadenceCommand>
+{
+    // Based on the 50m World Record of 5.56 seconds
+    private static readonly TimeSpan MaximumCadence = new(0,30,0);
+    private static readonly TimeSpan MinimumCadence = new(0,2,0);
+
+    public CalculateSpeedFromCadenceCommandValidator()
+    {
+        RuleFor(c => c.cadence)
+            .NotEmpty().WithMessage("Cadence is required.")
+            .LessThan(MaximumCadence).WithMessage("Cadence must be faster than 02:00 min/km.")
+            .GreaterThan(MinimumCadence).WithMessage("Cadence must be faster than 30:00 min/km.");
+    }
+}
