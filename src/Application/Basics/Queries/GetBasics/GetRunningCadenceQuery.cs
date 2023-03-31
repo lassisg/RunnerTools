@@ -11,8 +11,8 @@ public class GetRunningCadenceQueryHandler : IRequestHandler<GetRunningCadenceQu
     {
         return new RunningCadenceDto
         {
-            Cadence = new TimeSpan(0, 0, 0), 
-            Speed = 10M
+            Cadence = new TimeSpan(0, 6, 0), 
+            Speed = 0
         };
     }
 }

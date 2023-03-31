@@ -24,25 +24,28 @@ public class index : PageModel
     [BindProperty]
     public RunningCadenceDto CadenceData { get; set; }
 
-    public async void OnGetAsync(GetRunningSpeedQuery speedQuery, GetRunningCadenceQuery cadenceQuery)
+    public async Task<IActionResult> OnGetAsync(GetRunningSpeedQuery speedQuery, GetRunningCadenceQuery cadenceQuery)
     {
         SpeedData = await _mediator.Send(speedQuery);
         CadenceData = await _mediator.Send(cadenceQuery);
+        return Page();
     }
 
-    public async void OnPostSpeedAsync()
+    public async Task<IActionResult> OnPostSpeedAsync()
     {
         var calculateCommand = new CalculateCadenceFromSpeedCommand(SpeedData.Speed);
         
         SpeedData = await _mediator.Send(calculateCommand);
+        return Page();
     }
     
-    public async void OnPostCadenceAsync()
+    public async Task<IActionResult> OnPostCadenceAsync()
     {
         FixTimeInput();
         var calculateCommand = new CalculateSpeedFromCadenceCommand(CadenceData.Cadence);
         
         CadenceData = await _mediator.Send(calculateCommand);
+        return Page();
     }
 
     public void FixTimeInput()
