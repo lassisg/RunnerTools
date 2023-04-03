@@ -7,10 +7,13 @@
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
 
-<div class="row">
+<div class="row my-3">
     <form method="post" asp-page-handler="Speed" class="col-4 mb-3 mb-sm-0">
         <input type="number" asp-for="CadenceData.Speed" hidden="hidden">
         <input type="time" asp-for="CadenceData.Cadence" hidden="hidden">
+        <input type="number" asp-for="CadencePlanData.Distance" hidden="hidden">
+        <input type="time" asp-for="CadencePlanData.Duration" hidden="hidden">
+        <input type="time" asp-for="CadencePlanData.Cadence" hidden="hidden">
         <div class="card">
             <div class="card-header">
                 <h3>Speed to Cadence</h3>
@@ -19,18 +22,18 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="mb-3 row">
 
-                    <div class="col-6">
+                    <div class="col-8">
                         <label class="form-label" asp-for="SpeedData.Speed"></label>
                         <div class="row">
-                            <div class="col-8">
-                                <input class="form-control" asp-for="SpeedData.Speed" type="number" step="any" asp-format="{0:F}">
+                            <div class="col-6">
+                                <input class="form-control" asp-for="SpeedData.Speed" type="number" step="0.001" asp-format="{0:F}">
                                 <span class="text-danger" asp-validation-for="SpeedData.Speed"></span>
                             </div>
                             <label class="col-auto col-form-label ps-0">km/h</label>
                         </div>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-4">
                         <label class="form-label" asp-for="SpeedData.Cadence"></label>
                         <div class="row">
                             <label class="col-form-label">
@@ -50,6 +53,10 @@
     <form method="post" asp-page-handler="Cadence" class="col-4 mb-3 mb-sm-0">
         <input type="number" asp-for="SpeedData.Speed" hidden="hidden">
         <input type="time" asp-for="SpeedData.Cadence" hidden="hidden">
+        <input type="number" asp-for="CadencePlanData.Distance" hidden="hidden">
+        <input type="time" asp-for="CadencePlanData.Duration" hidden="hidden">
+        <input type="time" asp-for="CadencePlanData.Cadence" hidden="hidden">
+        
         <div class="card">
             <div class="card-header">
                 <h3>Cadence to Speed</h3>
@@ -58,18 +65,18 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="mb-3 row">
 
-                    <div class="col-6">
+                    <div class="col-8">
                         <label class="form-label" asp-for="CadenceData.Cadence"></label>
                         <div class="row">
                             <div class="col-8">
-                                <input class="form-control" asp-for="CadenceData.Cadence" type="time" asp-format="{0:mm\:ss}">
+                                <input class="form-control" asp-for="CadenceData.Cadence" type="time" step="1">
                                 <span class="text-danger" asp-validation-for="CadenceData.Cadence"></span>
                             </div>
                             <label class="col-auto col-form-label ps-0">min/km</label>
                         </div>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-4">
                         <label class="form-label" asp-for="CadenceData.Speed"></label>
                         <div class="row">
                             <label class="col-form-label">
@@ -82,8 +89,68 @@
             </div>
             <div class="card-footer">
                 <input type="submit" value="Calculate" class="btn btn-primary"/>
-                <input type="button" id="newCalculate" value="Calculate BTN" class="btn btn-primary" asp-page-handler="Cadence"/>
             </div>
         </div>
     </form>
+    
+</div>
+
+<hr>
+
+<h2 class="mb-4 mt-3">Planning calculation</h2>
+
+<div class="row my-3">
+    <form method="post" asp-page-handler="CadencePlan" class="col-4 mb-3 mb-sm-0">
+        <input type="number" asp-for="CadenceData.Speed" hidden="hidden">
+        <input type="time" asp-for="CadenceData.Cadence" hidden="hidden">
+        <input type="number" asp-for="SpeedData.Speed" hidden="hidden">
+        <input type="time" asp-for="SpeedData.Cadence" hidden="hidden">
+        <div class="card">
+            <div class="card-header">
+                <h3>Cadence from Plan</h3>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="mb-3 row">
+
+                    <div class="col-8">
+                        <label class="form-label" asp-for="CadencePlanData.Distance"></label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input class="form-control" asp-for="CadencePlanData.Distance" type="number" step="0.001" asp-format="{0:F}">
+                                <span class="text-danger" asp-validation-for="CadencePlanData.Distance"></span>
+                            </div>
+                            <label class="col-auto col-form-label ps-0">km</label>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label" asp-for="CadencePlanData.Cadence"></label>
+                        <div class="row">
+                            <label class="col-form-label">
+                                <span class="fw-bold">@($"{Model.CadencePlanData.Cadence:mm\\:ss}")</span>min/km
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+
+                    <div class="col-8">
+                        <label class="form-label" asp-for="CadencePlanData.Duration"></label>
+                        <div class="row">
+                            <div class="col-auto">
+                                <input class="form-control" asp-for="CadencePlanData.Duration" type="time" step="1">
+                                <span class="text-danger" asp-validation-for="CadencePlanData.Duration"></span>
+                            </div>
+                            @* <label class="col-auto col-form-label ps-0">min/km</label> *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <input type="submit" value="Calculate" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+    
 </div>

@@ -1,16 +1,17 @@
 ﻿using MediatR;
+using RunnerTools.Application.Basics.Queries.GetBasics;
 using RunnerTools.Domain.Entities;
 
 namespace RunnerTools.Application.Basics.Commands.CalculateCadenceFromPlan;
 
 
-public record CalculateCadenceFromPlanCommand(decimal distance, TimeSpan duration) : IRequest<CadenceFromPlanVm>;
+public record CalculateCadenceFromPlanCommand(decimal distance, TimeSpan duration) : IRequest<RunningDurationVm>;
 
-public class CalculateCadenceFromPlanCommandHandler : IRequestHandler<CalculateCadenceFromPlanCommand, CadenceFromPlanVm>
+public class CalculateCadenceFromPlanCommandHandler : IRequestHandler<CalculateCadenceFromPlanCommand, RunningDurationVm>
 {
-    public Task<CadenceFromPlanVm> Handle(CalculateCadenceFromPlanCommand request, CancellationToken cancellationToken)
+    public Task<RunningDurationVm> Handle(CalculateCadenceFromPlanCommand request, CancellationToken cancellationToken)
     {
-        var entity = new CadenceFromPlanVm()
+        var entity = new RunningDurationVm()
         {
             Distance = request.distance,
             Duration = request.duration,

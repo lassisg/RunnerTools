@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
+using RunnerTools.Application.Basics.Commands.CalculateCadenceFromPlan;
 using RunnerTools.Application.Basics.Commands.CalculateCadenceFromSpeed;
 using RunnerTools.Application.Basics.Commands.CalculateSpeedFromCadence;
 using RunnerTools.Application.Basics.Queries.GetBasics;
@@ -23,11 +24,22 @@ public class index : PageModel
     
     [BindProperty]
     public RunningCadenceDto CadenceData { get; set; }
+    
+    [BindProperty]
+    public RunningDurationVm CadencePlanData { get; set; }
+    
+    [BindProperty]
+    public RunningDurationVm SpeedPlanData { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(GetRunningSpeedQuery speedQuery, GetRunningCadenceQuery cadenceQuery)
+    public async Task<IActionResult> OnGetAsync(GetRunningSpeedQuery speedQuery, 
+                                                GetRunningCadenceQuery cadenceQuery,
+                                                GetRunningDurationQuery durationQuery)
     {
         SpeedData = await _mediator.Send(speedQuery);
         CadenceData = await _mediator.Send(cadenceQuery);
+        CadencePlanData = await _mediator.Send(durationQuery);
+        SpeedPlanData = await _mediator.Send(durationQuery);
+        
         return Page();
     }
 
@@ -36,20 +48,26 @@ public class index : PageModel
         var calculateCommand = new CalculateCadenceFromSpeedCommand(SpeedData.Speed);
         
         SpeedData = await _mediator.Send(calculateCommand);
+        
         return Page();
     }
     
     public async Task<IActionResult> OnPostCadenceAsync()
     {
-        FixTimeInput();
         var calculateCommand = new CalculateSpeedFromCadenceCommand(CadenceData.Cadence);
         
         CadenceData = await _mediator.Send(calculateCommand);
+        
         return Page();
     }
-
-    public void FixTimeInput()
+    
+    public async Task<IActionResult> OnPostCadencePlanAsync()
     {
-        CadenceData.Cadence = new TimeSpan(0, CadenceData.Cadence.Hours, CadenceData.Cadence.Minutes);
+        var calculateCommand = new CalculateCadenceFromPlanCommand(CadencePlanData.Distance, CadencePlanData.Duration);
+        
+        CadencePlanData = await _mediator.Send(calculateCommand);
+        
+        return Page();
     }
+    
 }
