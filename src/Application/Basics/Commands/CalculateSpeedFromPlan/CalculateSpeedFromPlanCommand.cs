@@ -1,18 +1,17 @@
 ﻿using MediatR;
-using RunnerTools.Application.Basics.Queries.GetBasics;
 using RunnerTools.Application.Common.Models;
 using RunnerTools.Domain.Entities;
 
 namespace RunnerTools.Application.Basics.Commands.CalculateSpeedFromPlan;
 
 
-public record CalculateSpeedFromPlanCommand(decimal distance, TimeSpan duration) : IRequest<SpeedFromPlanVm>;
+public record CalculateSpeedFromPlanCommand(decimal distance, TimeSpan duration) : IRequest<RunningDurationDto>;
 
-public class CalculateSpeedFromPlanCommandHandler : IRequestHandler<CalculateSpeedFromPlanCommand, SpeedFromPlanVm>
+public class CalculateSpeedFromPlanCommandHandler : IRequestHandler<CalculateSpeedFromPlanCommand, RunningDurationDto>
 {
-    public Task<SpeedFromPlanVm> Handle(CalculateSpeedFromPlanCommand request, CancellationToken cancellationToken)
+    public Task<RunningDurationDto> Handle(CalculateSpeedFromPlanCommand request, CancellationToken cancellationToken)
     {
-        var entity = new SpeedFromPlanVm()
+        var entity = new RunningDurationDto()
         {
             Distance = request.distance,
             Duration = request.duration,

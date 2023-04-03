@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using RunnerTools.Application.Basics.Commands.CalculateCadenceFromPlan;
 using RunnerTools.Application.Basics.Commands.CalculateCadenceFromSpeed;
 using RunnerTools.Application.Basics.Commands.CalculateSpeedFromCadence;
+using RunnerTools.Application.Basics.Commands.CalculateSpeedFromPlan;
 using RunnerTools.Application.Basics.Queries.GetBasics;
 using RunnerTools.Application.Common.Models;
 
@@ -26,10 +27,10 @@ public class index : PageModel
     public RunningCadenceDto CadenceData { get; set; }
     
     [BindProperty]
-    public RunningDurationVm CadencePlanData { get; set; }
+    public RunningDurationDto CadencePlanData { get; set; }
     
     [BindProperty]
-    public RunningDurationVm SpeedPlanData { get; set; }
+    public RunningDurationDto SpeedPlanData { get; set; }
 
     public async Task<IActionResult> OnGetAsync(GetRunningSpeedQuery speedQuery, 
                                                 GetRunningCadenceQuery cadenceQuery,
@@ -66,6 +67,15 @@ public class index : PageModel
         var calculateCommand = new CalculateCadenceFromPlanCommand(CadencePlanData.Distance, CadencePlanData.Duration);
         
         CadencePlanData = await _mediator.Send(calculateCommand);
+        
+        return Page();
+    }
+    
+    public async Task<IActionResult> OnPostSpeedPlanAsync()
+    {
+        var calculateCommand = new CalculateSpeedFromPlanCommand(SpeedPlanData.Distance, SpeedPlanData.Duration);
+        
+        SpeedPlanData = await _mediator.Send(calculateCommand);
         
         return Page();
     }
