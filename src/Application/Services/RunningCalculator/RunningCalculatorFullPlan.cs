@@ -1,18 +1,21 @@
-﻿using RunnerTools.Domain.Exceptions;
+﻿using RunnerTools.Application.Common.Interfaces;
+using RunnerTools.Application.Common.Models;
 
-namespace RunnerTools.Application.Common.Models;
+namespace RunnerTools.Application.Services.RunningCalculator;
 
-public class RunningCalculatorFullPlan : RunningCalculatorBase
+public class RunningCalculatorFullPlan : IRunningCalculator
 {
     // Based on the 50m World Record of 5.56 seconds
     private const decimal MaximumSpeed = 30M;
     private const decimal MinimumSpeed = 2M;
+    public RunningData Data { get; set; }
 
-    public RunningCalculatorFullPlan(RunningDto data) : base(data)
+    public RunningCalculatorFullPlan(RunningData data)
     {
+        Data = data;
     }
-    
-    public override RunningDto Calculate()
+
+    public RunningData Calculate()
     {
         var durationInSeconds = (decimal)Data.Duration.TotalSeconds;
         var cadenceInSeconds = durationInSeconds / Data.Distance;

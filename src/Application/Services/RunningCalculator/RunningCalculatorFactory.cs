@@ -1,18 +1,25 @@
-﻿namespace RunnerTools.Application.Common.Models;
+﻿using RunnerTools.Application.Common.Interfaces;
+using RunnerTools.Application.Common.Models;
 
-public abstract class RunningCalculatorBase
+namespace RunnerTools.Application.Services.RunningCalculator;
+
+public static class RunningCalculatorFactory
 {
-
-    public RunningDto Data { get; set; }
-    
-    protected RunningCalculatorBase(RunningDto data)
+    public static IRunningCalculator GetRunningCalculator(RunningData runningData)
     {
-        Data = data;
+        if (IsFullPlan(runningData)) 
+            return new RunningCalculatorFullPlan(runningData);
+        
+        if (IsDuration(runningData)) 
+            return new RunningCalculatorDuration(runningData);
+        
+        if (IsSpeed(runningData)) 
+            return new RunningCalculatorSpeedFromCadence(runningData);
+
+        return new RunningCalculatorCadenceFromSpeed(runningData);
     }
-    
-    public abstract RunningDto Calculate();
-    
-    public static bool IsFullPlan(RunningDto data)
+
+    private static bool IsFullPlan(RunningData data)
     {
         bool isFullPlan = data.Cadence.TotalSeconds == 0 && 
                           data.Speed == 0 &&
@@ -21,8 +28,8 @@ public abstract class RunningCalculatorBase
 
         return isFullPlan;
     }
-    
-    public static bool IsDuration(RunningDto data)
+
+    private static bool IsDuration(RunningData data)
     {
         bool isDuration = data.Duration.TotalSeconds == 0 && 
                           data.Distance >= 1 &&
@@ -31,8 +38,8 @@ public abstract class RunningCalculatorBase
 
         return isDuration;
     }
-    
-    public static bool IsSpeed(RunningDto data)
+
+    private static bool IsSpeed(RunningData data)
     {
         bool isSpeed = data.Speed == 0 &&
                        data.Distance == 0 &&
@@ -41,5 +48,5 @@ public abstract class RunningCalculatorBase
 
         return isSpeed;
     }
-    
+
 }

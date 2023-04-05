@@ -1,16 +1,22 @@
-﻿namespace RunnerTools.Application.Common.Models;
+﻿using RunnerTools.Application.Common.Interfaces;
+using RunnerTools.Application.Common.Models;
 
-public class RunningCalculatorDuration : RunningCalculatorBase
+namespace RunnerTools.Application.Services.RunningCalculator;
+
+public class RunningCalculatorDuration : IRunningCalculator
 {
     // Based on the 50m World Record of 5.56 seconds
     private const decimal MaximumSpeed = 30M;
     private const decimal MinimumSpeed = 2M;
 
-    public RunningCalculatorDuration(RunningDto data) : base(data)
+    public RunningCalculatorDuration(RunningData data)
     {
+        Data = data;
     }
-    
-    public override RunningDto Calculate()
+
+    public RunningData Data { get; set; }
+
+    public RunningData Calculate()
     {
         decimal durationInSeconds;
         
