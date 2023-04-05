@@ -4,6 +4,6 @@ namespace RunnerTools.Application.Common.Interfaces;
 
 public interface IRunningCalculator
 {
-    public RunningData Data { get; set; }
-    public  RunningData Calculate();
+    public Running Data { get; set; }
+    public  Running Calculate();
 }

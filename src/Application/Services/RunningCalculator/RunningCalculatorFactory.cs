@@ -5,7 +5,8 @@ namespace RunnerTools.Application.Services.RunningCalculator;
 
 public static class RunningCalculatorFactory
 {
-    public static IRunningCalculator GetRunningCalculator(RunningData runningData)
+
+    public static IRunningCalculator GetRunningCalculator(Running runningData)
     {
         if (IsFullPlan(runningData)) 
             return new RunningCalculatorFullPlan(runningData);
@@ -19,7 +20,7 @@ public static class RunningCalculatorFactory
         return new RunningCalculatorCadenceFromSpeed(runningData);
     }
 
-    private static bool IsFullPlan(RunningData data)
+    private static bool IsFullPlan(Running data)
     {
         bool isFullPlan = data.Cadence.TotalSeconds == 0 && 
                           data.Speed == 0 &&
@@ -29,7 +30,7 @@ public static class RunningCalculatorFactory
         return isFullPlan;
     }
 
-    private static bool IsDuration(RunningData data)
+    private static bool IsDuration(Running data)
     {
         bool isDuration = data.Duration.TotalSeconds == 0 && 
                           data.Distance >= 1 &&
@@ -39,7 +40,7 @@ public static class RunningCalculatorFactory
         return isDuration;
     }
 
-    private static bool IsSpeed(RunningData data)
+    private static bool IsSpeed(Running data)
     {
         bool isSpeed = data.Speed == 0 &&
                        data.Distance == 0 &&

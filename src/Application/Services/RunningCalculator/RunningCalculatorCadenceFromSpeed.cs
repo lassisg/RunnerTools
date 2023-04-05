@@ -10,14 +10,14 @@ public class RunningCalculatorCadenceFromSpeed : IRunningCalculator
     private const decimal MaximumSpeed = 30M;
     private const decimal MinimumSpeed = 2M;
 
-    public RunningData Data { get; set; }
+    public Running Data { get; set; }
 
-    public RunningCalculatorCadenceFromSpeed(RunningData data)
+    public RunningCalculatorCadenceFromSpeed(Running data)
     {
         Data = data;
     }
 
-    public RunningData Calculate()
+    public Running Calculate()
     {
         if (Data.Speed is < MinimumSpeed or > MaximumSpeed)
             throw new InvalidSpeedException(Data.Speed);

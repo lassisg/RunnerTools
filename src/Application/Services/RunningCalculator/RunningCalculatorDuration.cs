@@ -9,14 +9,15 @@ public class RunningCalculatorDuration : IRunningCalculator
     private const decimal MaximumSpeed = 30M;
     private const decimal MinimumSpeed = 2M;
 
-    public RunningCalculatorDuration(RunningData data)
+    public Running Data { get; set; }
+    
+    public RunningCalculatorDuration(Running data)
     {
         Data = data;
     }
 
-    public RunningData Data { get; set; }
 
-    public RunningData Calculate()
+    public Running Calculate()
     {
         decimal durationInSeconds;
         

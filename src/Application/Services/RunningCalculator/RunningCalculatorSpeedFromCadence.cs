@@ -10,14 +10,14 @@ public class RunningCalculatorSpeedFromCadence : IRunningCalculator
     private static readonly TimeSpan MaximumCadence = new(0,30,0);
     private static readonly TimeSpan MinimumCadence = new(0,2,0);
 
-    public RunningCalculatorSpeedFromCadence(RunningData data)
+    public RunningCalculatorSpeedFromCadence(Running data)
     {
         Data = data;
     }
 
-    public RunningData Data { get; set; }
+    public Running Data { get; set; }
 
-    public RunningData Calculate()
+    public Running Calculate()
     {
         if (Data.Cadence.TotalSeconds < MinimumCadence.TotalSeconds || 
             Data.Cadence.TotalSeconds > MaximumCadence.TotalSeconds)

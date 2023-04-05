@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RunnerTools.Application.Basics.Commands.CalculateBasicData;
@@ -10,7 +11,7 @@ namespace WebUI.Pages.Basic;
 public class Index : PageModel
 {
     private readonly IMediator _mediator;
-    
+
     public Index(IMediator mediator)
     {
         _mediator = mediator;
