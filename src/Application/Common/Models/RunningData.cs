@@ -2,7 +2,7 @@
 
 namespace RunnerTools.Application.Common.Models;
 
-public class RunningDto : IMapFrom<Running>
+public class RunningData : IMapFrom<Running>
 {
     public decimal Distance { get; set; }
     public decimal Speed { get; set; }
