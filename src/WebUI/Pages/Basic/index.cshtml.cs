@@ -7,17 +7,16 @@ using RunnerTools.Application.Common.Models;
 
 namespace WebUI.Pages.Basic;
 
-public class Index : PageModel
+public class index : PageModel
 {
     private readonly IMediator _mediator;
-    
-    public Index(IMediator mediator)
+
+    public index(IMediator mediator)
     {
         _mediator = mediator;
     }
 
-    [BindProperty] 
-    public RunningData Data { get; set; }
+    [BindProperty] public RunningDto Data { get; set; }
 
     public async Task<IActionResult> OnGetAsync(GetRunningQuery query)
     {
@@ -26,10 +25,11 @@ public class Index : PageModel
         return Page();
     }
 
+    // public async void OnPostAsync()
     public async Task<IActionResult> OnPostAsync()
     {
         ModelState.Clear();
-            
+        
         var calculateCommand = new CalculateBasicDataCommand(Data);
         Data = await _mediator.Send(calculateCommand);
 

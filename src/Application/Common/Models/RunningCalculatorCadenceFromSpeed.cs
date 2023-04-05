@@ -1,23 +1,18 @@
-﻿using RunnerTools.Application.Common.Interfaces;
-using RunnerTools.Application.Common.Models;
-using RunnerTools.Domain.Exceptions;
+﻿using RunnerTools.Domain.Exceptions;
 
-namespace RunnerTools.Application.Services.RunningCalculator;
+namespace RunnerTools.Application.Common.Models;
 
-public class RunningCalculatorCadenceFromSpeed : IRunningCalculator
+public class RunningCalculatorCadenceFromSpeed : RunningCalculatorBase
 {
     // Based on the 50m World Record of 5.56 seconds
     private const decimal MaximumSpeed = 30M;
     private const decimal MinimumSpeed = 2M;
 
-    public RunningData Data { get; set; }
-
-    public RunningCalculatorCadenceFromSpeed(RunningData data)
+    public RunningCalculatorCadenceFromSpeed(RunningDto data) : base(data)
     {
-        Data = data;
     }
-
-    public RunningData Calculate()
+    
+    public override RunningDto Calculate()
     {
         if (Data.Speed is < MinimumSpeed or > MaximumSpeed)
             throw new InvalidSpeedException(Data.Speed);

@@ -1,23 +1,18 @@
-﻿using RunnerTools.Application.Common.Interfaces;
-using RunnerTools.Application.Common.Models;
-using RunnerTools.Domain.Exceptions;
+﻿using RunnerTools.Domain.Exceptions;
 
-namespace RunnerTools.Application.Services.RunningCalculator;
+namespace RunnerTools.Application.Common.Models;
 
-public class RunningCalculatorSpeedFromCadence : IRunningCalculator
+public class RunningCalculatorSpeedFromCadence : RunningCalculatorBase
 {
     // Based on the 50m World Record of 5.56 seconds
     private static readonly TimeSpan MaximumCadence = new(0,30,0);
     private static readonly TimeSpan MinimumCadence = new(0,2,0);
 
-    public RunningCalculatorSpeedFromCadence(RunningData data)
+    public RunningCalculatorSpeedFromCadence(RunningDto data) : base(data)
     {
-        Data = data;
     }
-
-    public RunningData Data { get; set; }
-
-    public RunningData Calculate()
+    
+    public override RunningDto Calculate()
     {
         if (Data.Cadence.TotalSeconds < MinimumCadence.TotalSeconds || 
             Data.Cadence.TotalSeconds > MaximumCadence.TotalSeconds)

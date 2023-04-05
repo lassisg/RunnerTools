@@ -3,12 +3,19 @@ using RunnerTools.Application.Common.Models;
 
 namespace RunnerTools.Application.Basics.Queries.GetBasics;
 
-public record GetRunningQuery : IRequest<RunningData>;
+public record GetRunningQuery : IRequest<RunningDto>;
 
-public class GetRunningDurationQueryHandler : IRequestHandler<GetRunningQuery, RunningData>
+public class GetRunningDurationQueryHandler : IRequestHandler<GetRunningQuery,RunningDto>
 {
-    public Task<RunningData> Handle(GetRunningQuery request, CancellationToken cancellationToken)
+    public Task<RunningDto> Handle(GetRunningQuery request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(new RunningData());
+        // return new RunningDto
+        // {
+        //     Distance = 1,
+        //     Duration = TimeSpan.FromMinutes(6),
+        //     Cadence = TimeSpan.FromSeconds(6),
+        //     Speed = 10
+        // };
+        return Task.FromResult(new RunningDto());
     }
 }
