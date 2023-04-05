@@ -1,5 +1,5 @@
 ﻿@page
-@model Basic.index
+@model Basic.Index
 
 @{
     ViewData["Title"] = "Basic calculations";
@@ -7,34 +7,63 @@
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
 
-<form method="post" class="col-4 mb-3 mb-sm-0">
-    <div class="card">
-        <div class="card-header">
-            <h3>Speed to Cadence</h3>
-        </div>
-        <div class="card-body">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="mb-3 row">
-                <label class="col-3 col-form-label" asp-for="Data.Speed"></label>
-                <div class="col-3">
-                    <input class="form-control" asp-for="Data.Speed" type="number">
-                    <span class="text-danger" asp-validation-for="Data.Speed"></span>
+
+<div class="row my-3">
+    <form method="post" class="col-5 mb-3 mb-sm-0">
+        
+        <div class="mb-3 row">
+
+            <div class="col-6">
+                <label class="form-label" asp-for="Data.Distance"></label>
+                <div class="row">
+                    <div class="col-6">
+                        <input type="number" step="0.001" class="form-control"
+                               asp-for="Data.Distance" asp-format="{0:F}">
+                    </div>
+                    <label class="col-auto col-form-label ps-0">km</label>
                 </div>
-                <label class="col-auto col-form-label ps-0">km/h</label>
             </div>
-            
-            @if (Model.ModelState.Any())
-            {
-            <div class="row">
-                <label class="col-3 col-form-label" asp-for="Data.Cadence"></label>
-                <label class="col-auto col-form-label">
-                    <span class="fw-bold">@($"{Model.Data.Cadence:mm\\:ss}")</span> min/km
-                </label>
+
+            <div class="col-6">
+                <label class="form-label" asp-for="Data.Duration"></label>
+                <div class="row">
+                    <div class="col-auto">
+                        <input type="time" step="1" class="form-control"
+                               asp-for="Data.Duration">
+                    </div>
+                </div>
             </div>
-            }
+
         </div>
-        <div class="card-footer">
-            <input type="submit" value="Calculate" class="btn btn-primary"/>
+
+        <div class="mb-3 row">
+
+            <div class="col-6">
+                <label class="form-label" asp-for="Data.Cadence"></label>
+                <div class="row">
+                    <div class="col-auto">
+                        <input type="time" step="1" class="form-control"
+                               asp-for="Data.Cadence">
+                    </div>
+                    <label class="col-auto col-form-label ps-0">/km</label>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <label class="form-label" asp-for="Data.Speed"></label>
+                <div class="row">
+                    <div class="col-6">
+                        <input type="number" step="0.001" class="form-control"
+                               asp-for="Data.Speed" asp-format="{0:F}">
+                    </div>
+                    <label class="col-auto col-form-label ps-0">km/h</label>
+                </div>
+            </div>
+
         </div>
-    </div>
-</form>
+
+        <input type="submit" value="Calculate" class="btn btn-primary"/>
+
+    </form>
+
+</div>
