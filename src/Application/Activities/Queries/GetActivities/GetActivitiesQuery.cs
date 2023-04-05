@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Dynastream.Fit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RunnerTools.Application.Common.Interfaces;

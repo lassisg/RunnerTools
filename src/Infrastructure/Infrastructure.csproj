@@ -26,4 +26,10 @@
       <Folder Include="Files\Maps" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Fit">
+        <HintPath>ExternalLibs\FitSDK\21.105.00\Fit.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

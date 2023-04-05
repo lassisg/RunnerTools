@@ -1,11 +1,8 @@
-﻿using AutoMapper.QueryableExtensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using RunnerTools.Application.Activities.Queries.GetActivities;
 using RunnerTools.Application.Common.Exceptions;
 using RunnerTools.Application.Common.Interfaces;
 using RunnerTools.Domain.Entities;
-using Activity = Dynastream.Fit.Activity;
 
 namespace RunnerTools.Application.Activities.Commands.DeleteActivity;
 
