@@ -1,11 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.IdentityModel.Tokens;
-using RunnerTools.Application.Basics.Commands.CalculateCadenceFromPlan;
-using RunnerTools.Application.Basics.Commands.CalculateCadenceFromSpeed;
-using RunnerTools.Application.Basics.Commands.CalculateSpeedFromCadence;
-using RunnerTools.Application.Basics.Commands.CalculateSpeedFromPlan;
+using RunnerTools.Application.Basics.Commands.CalculateBasicData;
 using RunnerTools.Application.Basics.Queries.GetBasics;
 using RunnerTools.Application.Common.Models;
 
@@ -20,64 +16,24 @@ public class index : PageModel
         _mediator = mediator;
     }
 
-    [BindProperty]
-    public RunningSpeedDto SpeedData { get; set; }
-    
-    [BindProperty]
-    public RunningCadenceDto CadenceData { get; set; }
-    
-    [BindProperty]
-    public RunningDurationDto CadencePlanData { get; set; }
-    
-    [BindProperty]
-    public RunningDurationDto SpeedPlanData { get; set; }
+    [BindProperty] public RunningDto Data { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(GetRunningSpeedQuery speedQuery, 
-                                                GetRunningCadenceQuery cadenceQuery,
-                                                GetRunningDurationQuery durationQuery)
+    public async Task<IActionResult> OnGetAsync(GetRunningQuery query)
     {
-        SpeedData = await _mediator.Send(speedQuery);
-        CadenceData = await _mediator.Send(cadenceQuery);
-        CadencePlanData = await _mediator.Send(durationQuery);
-        SpeedPlanData = await _mediator.Send(durationQuery);
+        Data = await _mediator.Send(query);
         
         return Page();
     }
 
-    public async Task<IActionResult> OnPostSpeedAsync()
+    // public async void OnPostAsync()
+    public async Task<IActionResult> OnPostAsync()
     {
-        var calculateCommand = new CalculateCadenceFromSpeedCommand(SpeedData.Speed);
+        ModelState.Clear();
         
-        SpeedData = await _mediator.Send(calculateCommand);
-        
+        var calculateCommand = new CalculateBasicDataCommand(Data);
+        Data = await _mediator.Send(calculateCommand);
+
         return Page();
     }
-    
-    public async Task<IActionResult> OnPostCadenceAsync()
-    {
-        var calculateCommand = new CalculateSpeedFromCadenceCommand(CadenceData.Cadence);
-        
-        CadenceData = await _mediator.Send(calculateCommand);
-        
-        return Page();
-    }
-    
-    public async Task<IActionResult> OnPostCadencePlanAsync()
-    {
-        var calculateCommand = new CalculateCadenceFromPlanCommand(CadencePlanData.Distance, CadencePlanData.Duration);
-        
-        CadencePlanData = await _mediator.Send(calculateCommand);
-        
-        return Page();
-    }
-    
-    public async Task<IActionResult> OnPostSpeedPlanAsync()
-    {
-        var calculateCommand = new CalculateSpeedFromPlanCommand(SpeedPlanData.Distance, SpeedPlanData.Duration);
-        
-        SpeedPlanData = await _mediator.Send(calculateCommand);
-        
-        return Page();
-    }
-    
+
 }

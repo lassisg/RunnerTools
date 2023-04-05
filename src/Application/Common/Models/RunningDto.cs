@@ -1,5 +1,4 @@
 ﻿using RunnerTools.Application.Common.Mappings;
-using RunnerTools.Domain.Entities;
 
 namespace RunnerTools.Application.Common.Models;
 

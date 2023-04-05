@@ -1,4 +1,4 @@
-﻿namespace RunnerTools.Domain.Entities;
+﻿namespace RunnerTools.Application.Common.Models;
 
 public class Running
 {
