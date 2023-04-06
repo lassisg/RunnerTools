@@ -22,7 +22,9 @@ public class CalculateBasicDataCommandHandler : IRequestHandler<CalculateBasicDa
         var inputData = _mapper.Map<Running>(request.data);
         
         var calculator = RunningCalculatorFactory.GetRunningCalculator(inputData);
-        var result = calculator.Calculate();
+        
+        // TODO: Map each calculator's input/output type
+        var result = calculator.Calculate(inputData);
         
         var outputData = _mapper.Map<RunningData>(result);
         

@@ -1,8 +1,9 @@
-﻿using RunnerTools.Application.Common.Mappings;
+﻿using RunnerTools.Application.Common.Interfaces;
+using RunnerTools.Application.Common.Mappings;
 
 namespace RunnerTools.Application.Common.Models;
 
-public class Running : IMapFrom<RunningData>
+public class Running : IMapFrom<RunningData>, IRunning
 {
     public TimeSpan Cadence { get; set; }
     public decimal Speed { get; set; }
