@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Dynastream.Fit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RunnerTools.Application.Common.Exceptions;
 using RunnerTools.Application.Common.Interfaces;
+using RunnerTools.Domain.Entities;
 
 namespace RunnerTools.Application.Activities.Queries.GetActivities;
 

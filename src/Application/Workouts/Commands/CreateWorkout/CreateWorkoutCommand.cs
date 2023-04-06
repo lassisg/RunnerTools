@@ -1,5 +1,4 @@
-﻿using Dynastream.Fit;
-using MediatR;
+﻿using MediatR;
 using RunnerTools.Application.Common.Interfaces;
 using RunnerTools.Domain.Entities;
 using Sport = RunnerTools.Domain.Enums.Sport;
